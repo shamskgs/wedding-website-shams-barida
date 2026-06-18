@@ -71,7 +71,7 @@ export default function MemoryUploadSection() {
           className="flex justify-center gap-12 mb-12 text-gold/80"
         >
           <div className="flex flex-col items-center gap-2">
-            <div className="p-4 rounded-full bg-ivory/75 border border-gold/20 shadow-[0_16px_45px_rgba(23,63,58,0.10)] backdrop-blur-md">
+            <div className="p-4 rounded-full bg-[#FFF7ED]/75 border border-[#D94673]/25 shadow-[0_16px_45px_rgba(217,70,115,0.14)] backdrop-blur-md">
               <ImageIcon size={24} />
             </div>
             <span className="text-[10px] uppercase tracking-wider font-semibold text-charcoal/50">
@@ -80,7 +80,7 @@ export default function MemoryUploadSection() {
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <div className="p-4 rounded-full bg-ivory/75 border border-gold/20 shadow-[0_16px_45px_rgba(23,63,58,0.10)] backdrop-blur-md">
+            <div className="p-4 rounded-full bg-[#FFF7ED]/75 border border-[#D94673]/25 shadow-[0_16px_45px_rgba(217,70,115,0.14)] backdrop-blur-md">
               <Video size={24} />
             </div>
             <span className="text-[10px] uppercase tracking-wider font-semibold text-charcoal/50">
@@ -102,7 +102,7 @@ export default function MemoryUploadSection() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleUploadClick}
-            className="w-full sm:w-auto px-10 py-4 bg-peacock hover:bg-gold text-ivory font-semibold text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_18px_50px_rgba(23,63,58,0.22)] hover:shadow-[0_22px_60px_rgba(181,139,78,0.26)] focus:outline-none focus:ring-2 focus:ring-gold"
+            className="w-full sm:w-auto px-10 py-4 bg-[#9F1239] hover:bg-[#D99A24] text-ivory font-semibold text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_18px_50px_rgba(159,18,57,0.28)] hover:shadow-[0_22px_60px_rgba(217,154,36,0.32)] focus:outline-none focus:ring-2 focus:ring-gold"
           >
             <Upload size={14} />
             {t(content.cta)}

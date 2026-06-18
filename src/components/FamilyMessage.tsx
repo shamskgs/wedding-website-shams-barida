@@ -28,7 +28,7 @@ export default function FamilyMessage() {
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: "easeOut" }}
           whileHover={{ y: -4 }}
-          className="w-full max-w-xl p-8 md:p-12 bg-ivory/72 border border-gold/30 rounded-[1.75rem] relative shadow-[0_28px_90px_rgba(23,63,58,0.12)] backdrop-blur-md"
+          className="w-full max-w-xl p-8 md:p-12 bg-[#FFF7ED]/70 border border-[#D94673]/30 rounded-[1.75rem] relative shadow-[0_28px_90px_rgba(217,70,115,0.16)] backdrop-blur-md"
         >
           {/* Subtle inside line */}
           <div className="absolute inset-3 rounded-[1.25rem] border border-gold/10 pointer-events-none" />

@@ -114,7 +114,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Quick Details (Date, Venue) */}
         <motion.div
           variants={itemVariants}
-          className={`inline-flex max-w-full items-center justify-start overflow-x-auto whitespace-nowrap rounded-full border border-gold/35 bg-ivory/70 px-5 py-3 text-[10px] sm:text-xs md:text-[13px] tracking-[0.12em] sm:tracking-[0.18em] uppercase font-semibold text-peacock shadow-[0_22px_55px_rgba(181,139,78,0.18)] backdrop-blur-md mb-12 ${
+          className={`inline-flex max-w-full items-center justify-start overflow-x-auto whitespace-nowrap rounded-full border border-[#D99A24]/45 bg-[#FFF7ED]/70 px-5 py-3 text-[10px] sm:text-xs md:text-[13px] tracking-[0.12em] sm:tracking-[0.18em] uppercase font-semibold text-peacock shadow-[0_22px_55px_rgba(217,154,36,0.22)] backdrop-blur-md mb-12 ${
             language === "bn" ? "font-bengali-sans" : "font-poppins"
           }`}
         >
@@ -122,7 +122,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
             <Calendar size={15} className="text-gold" />
             {t(content.date)} · {t(content.time)}
           </span>
-          <span className="mx-4 h-4 w-px shrink-0 bg-rose/45" />
+          <span className="mx-4 h-4 w-px shrink-0 bg-[#D94673]/45" />
           <span className="inline-flex items-center gap-2">
             <MapPin size={15} className="text-gold" />
             {t(content.venue)}, {t(content.location)}

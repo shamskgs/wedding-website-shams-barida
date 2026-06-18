@@ -88,13 +88,13 @@ export default function ProgramSection({
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: "easeOut" }}
           whileHover={{ y: -4 }}
-          className="w-full max-w-2xl bg-ivory/72 border border-gold/35 rounded-[1.75rem] p-8 md:p-12 relative overflow-hidden shadow-[0_32px_95px_rgba(23,63,58,0.13)] backdrop-blur-md"
+          className="w-full max-w-2xl bg-[#FFF7ED]/70 border border-[#D99A24]/40 rounded-[1.75rem] p-8 md:p-12 relative overflow-hidden shadow-[0_32px_95px_rgba(217,154,36,0.24)] backdrop-blur-md"
         >
           <motion.div
             aria-hidden="true"
             animate={{ x: ["-20%", "20%", "-20%"], opacity: [0.22, 0.45, 0.22] }}
             transition={{ repeat: Infinity, duration: 9, ease: "easeInOut" }}
-            className="absolute inset-y-0 left-1/2 w-40 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/20 to-transparent blur-2xl"
+            className="absolute inset-y-0 left-1/2 w-40 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#D94673]/25 to-transparent blur-2xl"
           />
           {/* Subtle Frame Outline */}
           <div className="absolute inset-4 rounded-[1.25rem] border border-gold/10 pointer-events-none" />

@@ -66,7 +66,7 @@ export default function GuestGallery() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full max-w-xl border border-dashed border-gold/35 rounded-[1.75rem] p-12 text-center flex flex-col items-center bg-ivory/65 shadow-[inset_0_0_60px_rgba(181,139,78,0.10),0_22px_70px_rgba(23,63,58,0.10)] backdrop-blur-md"
+            className="w-full max-w-xl border border-dashed border-[#D94673]/35 rounded-[1.75rem] p-12 text-center flex flex-col items-center bg-[#FFF7ED]/65 shadow-[inset_0_0_60px_rgba(217,154,36,0.12),0_22px_70px_rgba(217,70,115,0.12)] backdrop-blur-md"
           >
             <div className="p-4 rounded-full bg-ivory text-gold/60 mb-4 border border-gold/10">
               <Camera size={32} />
@@ -95,7 +95,7 @@ export default function GuestGallery() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: (index % 3) * 0.1 }}
                   whileHover={{ y: -5, rotate: index % 2 === 0 ? -0.4 : 0.4 }}
-                  className="break-inside-avoid relative overflow-hidden rounded-[1.25rem] border border-gold/25 bg-ivory/65 p-2.5 shadow-[0_18px_50px_rgba(23,63,58,0.10)] group hover:shadow-[0_24px_70px_rgba(181,139,78,0.18)] transition-all duration-300 cursor-pointer backdrop-blur-md"
+                  className="break-inside-avoid relative overflow-hidden rounded-[1.25rem] border border-[#D99A24]/30 bg-[#FFF7ED]/65 p-2.5 shadow-[0_18px_50px_rgba(217,70,115,0.12)] group hover:shadow-[0_24px_70px_rgba(217,154,36,0.22)] transition-all duration-300 cursor-pointer backdrop-blur-md"
                   onClick={() => handleImageClick(index)}
                 >
                   <div className={`relative w-full ${heightClass} bg-ivory overflow-hidden rounded-lg`}>

@@ -63,7 +63,7 @@ export default function ContactSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.15 }}
               whileHover={{ y: -4 }}
-              className="bg-ivory/72 border border-gold/30 rounded-[1.25rem] p-6 shadow-[0_22px_70px_rgba(23,63,58,0.10)] flex flex-col items-center text-center relative backdrop-blur-md"
+              className="bg-[#FFF7ED]/70 border border-[#D99A24]/35 rounded-[1.25rem] p-6 shadow-[0_22px_70px_rgba(217,154,36,0.16)] flex flex-col items-center text-center relative backdrop-blur-md"
             >
               {/* Optional relation tag (Groom's Side / Bride's Side) */}
               {contact.relation && (
