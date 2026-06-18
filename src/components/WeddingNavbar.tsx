@@ -46,7 +46,7 @@ export default function WeddingNavbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? "bg-ivory/90 backdrop-blur-md border-b border-gold/10 py-3 shadow-sm"
+            ? "bg-ivory/62 backdrop-blur-xl py-3 shadow-[0_12px_40px_rgba(23,63,58,0.09)]"
             : "bg-transparent py-5"
         }`}
       >
@@ -55,7 +55,7 @@ export default function WeddingNavbar() {
           <a
             href="#home"
             onClick={(e) => handleScrollTo(e, "home")}
-            className="flex items-center text-peacock hover:text-gold transition-colors font-calligraphy text-2xl md:text-3xl font-semibold tracking-wide"
+            className="flex items-center text-peacock hover:text-gold transition-colors font-calligraphy text-xl md:text-2xl font-semibold tracking-wide"
           >
             {weddingContent.navigation.monogram}
           </a>
@@ -80,7 +80,7 @@ export default function WeddingNavbar() {
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="text-[11px] font-semibold tracking-wider px-3 py-1.5 rounded-full border border-gold/30 hover:border-gold bg-ivory/80 text-peacock hover:text-gold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              className="text-[11px] font-semibold tracking-wider px-3 py-1.5 rounded-full bg-ivory/62 backdrop-blur-xl text-peacock hover:text-gold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold shadow-[0_8px_24px_rgba(23,63,58,0.06)]"
               aria-label={
                 language === "en" ? "বাংলা ভাষায় পরিবর্তন করুন" : "Switch to English"
               }
@@ -111,7 +111,7 @@ export default function WeddingNavbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden absolute top-full left-0 right-0 bg-ivory border-b border-gold/10 shadow-lg overflow-hidden"
+              className="md:hidden absolute top-full left-0 right-0 bg-ivory/78 backdrop-blur-xl shadow-lg overflow-hidden"
             >
               <div className="flex flex-col items-center py-6 gap-5 px-6">
                 {navLinks.map((link) => (

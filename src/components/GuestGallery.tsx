@@ -33,7 +33,7 @@ export default function GuestGallery() {
   const visibleItems = items.filter((item) => !brokenImageIds.includes(item.id));
 
   return (
-    <section id="gallery" className="bg-white py-24 px-6 border-b border-gold/10 relative">
+    <section id="gallery" className="py-24 px-6 relative">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         {/* Section Header */}
         <motion.div
@@ -65,9 +65,9 @@ export default function GuestGallery() {
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="w-full max-w-xl border border-dashed border-gold/30 rounded-2xl p-12 text-center flex flex-col items-center bg-ivory/10 shadow-inner"
+            className="w-full max-w-xl rounded-[2rem] p-12 text-center flex flex-col items-center bg-ivory/34 backdrop-blur-xl shadow-[0_24px_80px_rgba(23,63,58,0.10)]"
           >
-            <div className="p-4 rounded-full bg-ivory text-gold/60 mb-4 border border-gold/10">
+            <div className="p-4 rounded-full bg-white/34 text-gold/80 mb-4 shadow-[0_12px_32px_rgba(23,63,58,0.07)]">
               <Camera size={32} />
             </div>
             <p className="text-charcoal/60 text-xs md:text-sm tracking-wider font-light max-w-xs leading-relaxed">
@@ -93,10 +93,10 @@ export default function GuestGallery() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: (index % 3) * 0.1 }}
-                  className="break-inside-avoid relative overflow-hidden rounded-xl border border-gold/10 bg-white p-2.5 shadow-sm group hover:shadow-md transition-all duration-300 cursor-pointer"
+                  className="break-inside-avoid relative overflow-hidden rounded-[1.35rem] bg-white/34 backdrop-blur-xl p-2.5 shadow-[0_18px_54px_rgba(23,63,58,0.08)] group hover:shadow-[0_24px_70px_rgba(23,63,58,0.12)] transition-all duration-300 cursor-pointer"
                   onClick={() => handleImageClick(index)}
                 >
-                  <div className={`relative w-full ${heightClass} bg-ivory overflow-hidden rounded-lg`}>
+                  <div className={`relative w-full ${heightClass} bg-ivory overflow-hidden rounded-[1rem]`}>
                     <Image
                       src={item.url}
                       alt={item.caption ? t(item.caption) : "Guest Memory"}

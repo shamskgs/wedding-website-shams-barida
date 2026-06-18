@@ -19,7 +19,7 @@ export default function MemoryUploadSection() {
   };
 
   return (
-    <section id="memories" className="bg-ivory py-24 px-6 border-b border-gold/10 relative">
+    <section id="memories" className="py-24 px-6 relative overflow-hidden">
       {/* Decorative leaf swirl background detail */}
       <div className="absolute bottom-6 right-10 text-sage/15 rotate-45 pointer-events-none hidden md:block">
         <svg width="180" height="180" viewBox="0 0 120 120" fill="currentColor">
@@ -71,7 +71,7 @@ export default function MemoryUploadSection() {
           className="flex justify-center gap-12 mb-12 text-gold/80"
         >
           <div className="flex flex-col items-center gap-2">
-            <div className="p-4 rounded-full bg-white border border-gold/10 shadow-sm">
+            <div className="p-4 rounded-full bg-white/38 backdrop-blur-xl shadow-[0_14px_34px_rgba(23,63,58,0.08)]">
               <ImageIcon size={24} />
             </div>
             <span className="text-[10px] uppercase tracking-wider font-semibold text-charcoal/50">
@@ -80,7 +80,7 @@ export default function MemoryUploadSection() {
           </div>
 
           <div className="flex flex-col items-center gap-2">
-            <div className="p-4 rounded-full bg-white border border-gold/10 shadow-sm">
+            <div className="p-4 rounded-full bg-white/38 backdrop-blur-xl shadow-[0_14px_34px_rgba(23,63,58,0.08)]">
               <Video size={24} />
             </div>
             <span className="text-[10px] uppercase tracking-wider font-semibold text-charcoal/50">

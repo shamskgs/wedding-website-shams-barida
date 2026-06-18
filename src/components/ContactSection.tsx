@@ -28,7 +28,7 @@ export default function ContactSection() {
   if (activeContacts.length === 0) return null;
 
   return (
-    <section id="contact" className="bg-ivory py-24 px-6 border-b border-gold/10 relative">
+    <section id="contact" className="py-24 px-6 relative">
       <div className="max-w-4xl mx-auto flex flex-col items-center">
         {/* Section Header */}
         <motion.div
@@ -62,11 +62,11 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.15 }}
-              className="bg-white border border-gold/15 rounded-xl p-6 shadow-sm flex flex-col items-center text-center relative"
+              className="bg-ivory/34 backdrop-blur-xl rounded-[1.5rem] p-6 shadow-[0_24px_70px_rgba(23,63,58,0.10)] flex flex-col items-center text-center relative"
             >
               {/* Optional relation tag (Groom's Side / Bride's Side) */}
               {contact.relation && (
-                <span className="text-[9px] uppercase tracking-widest text-gold bg-ivory/50 px-2 py-0.5 rounded border border-gold/10 font-semibold mb-3">
+                <span className="text-[9px] uppercase tracking-widest text-gold bg-white/35 px-2 py-0.5 rounded-full font-semibold mb-3">
                   {t(contact.relation)}
                 </span>
               )}
@@ -86,7 +86,7 @@ export default function ContactSection() {
                 {/* Dial Call Button */}
                 <a
                   href={`tel:${contact.phone.replace(/\s+/g, "")}`}
-                  className="flex-1 py-2.5 bg-ivory hover:bg-gold text-peacock hover:text-white rounded-full text-xs uppercase tracking-wider font-semibold border border-gold/25 flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none"
+                  className="flex-1 py-2.5 bg-white/38 hover:bg-gold text-peacock hover:text-white rounded-full text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none shadow-[0_10px_28px_rgba(23,63,58,0.06)]"
                   aria-label={`Call ${contact.name}`}
                 >
                   <Phone size={13} />
@@ -98,7 +98,7 @@ export default function ContactSection() {
                   href={`https://wa.me/${contact.whatsapp ? contact.whatsapp.replace(/[^0-9]/g, "") : contact.phone.replace(/[^0-9]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2.5 bg-emerald-50 hover:bg-emerald-500 text-emerald-600 hover:text-white rounded-full text-xs uppercase tracking-wider font-semibold border border-emerald-100 flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none"
+                  className="flex-1 py-2.5 bg-emerald-50/70 hover:bg-emerald-500 text-emerald-700 hover:text-white rounded-full text-xs uppercase tracking-wider font-semibold flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none shadow-[0_10px_28px_rgba(23,63,58,0.06)]"
                   aria-label={`Chat with ${contact.name} on WhatsApp`}
                 >
                   <MessageCircle size={13} />

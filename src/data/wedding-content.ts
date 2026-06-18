@@ -8,6 +8,7 @@ export interface Profile {
   role: LocalizedText;
   image: string;
   bio: LocalizedText;
+  details?: LocalizedText[];
 }
 
 export interface GalleryItem {
@@ -39,7 +40,7 @@ export const weddingContent = {
   },
   
   navigation: {
-    monogram: "S & B",
+    monogram: "Shams × Barida",
     links: [
       { id: "home", label: { en: "Home", bn: "হোম" } },
       { id: "couple", label: { en: "Couple", bn: "বর-কনে" } },
@@ -80,8 +81,8 @@ export const weddingContent = {
       bn: "SWID Convention Center"
     },
     location: {
-      en: "Dhaka, Bangladesh",
-      bn: "ঢাকা, বাংলাদেশ"
+      en: "Dhaka",
+      bn: "ঢাকা"
     },
     viewDetailsCTA: {
       en: "View Details",
@@ -123,7 +124,13 @@ export const weddingContent = {
       bio: {
         en: "Thoughtful, creative, and deeply connected to the people he loves, Shams begins this new chapter with gratitude, joy, and an open heart.",
         bn: "সৃজনশীল, যত্নশীল এবং প্রিয় মানুষদের প্রতি গভীরভাবে নিবেদিত শামস কৃতজ্ঞতা, আনন্দ ও ভালোবাসা নিয়ে জীবনের নতুন অধ্যায় শুরু করছেন।"
-      }
+      },
+      details: [
+        { en: "Senior UI/UX Designer", bn: "সিনিয়র UI/UX ডিজাইনার" },
+        { en: "BSc Engineer", bn: "বিএসসি ইঞ্জিনিয়ার" },
+        { en: "Photographer", bn: "ফটোগ্রাফার" },
+        { en: "Tabla Player", bn: "তবলা বাদক" }
+      ]
     } as Profile,
     bride: {
       name: { en: "Barida Ali Myth", bn: "বারিদা আলী মিথ" },
@@ -132,7 +139,13 @@ export const weddingContent = {
       bio: {
         en: "Graceful, warm, and full of life, Barida brings kindness and joy into every moment as she steps into this beautiful new journey.",
         bn: "মার্জিত, প্রাণবন্ত ও উষ্ণ হৃদয়ের বারিদা তাঁর সদয়তা ও আনন্দ নিয়ে জীবনের এই সুন্দর নতুন যাত্রায় পা রাখছেন।"
-      }
+      },
+      details: [
+        { en: "Executive, Cargo Reservation", bn: "এক্সিকিউটিভ, কার্গো রিজার্ভেশন" },
+        { en: "Oman Air", bn: "Oman Air" },
+        { en: "MA in English", bn: "ইংরেজিতে এমএ" },
+        { en: "Makeup Enthusiast", bn: "মেকআপ এনথুজিয়াস্ট" }
+      ]
     } as Profile
   },
 
@@ -236,6 +249,12 @@ export const weddingContent = {
         phone: "01775822428",
         whatsapp: "+8801775822428",
         relation: { en: "Groom's Family Representative", bn: "বরের পক্ষ থেকে" }
+      },
+      {
+        name: "Talha",
+        phone: "01715537406",
+        whatsapp: "+8801715537406",
+        relation: { en: "Bride's Family Representative", bn: "কনের পক্ষ থেকে" }
       }
     ] as ContactPerson[]
   },
@@ -248,7 +267,7 @@ export const weddingContent = {
   },
 
   footer: {
-    monogram: "S & B",
+    monogram: "11.07.2026",
     coupleNames: {
       en: "Shams Tabraze Oly & Barida Ali Myth",
       bn: "শামস তাবরেজ অলি ও বারিদা আলী মিথ"

@@ -66,7 +66,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Intro Tagline */}
         <motion.p
           variants={itemVariants}
-          className="text-xs uppercase tracking-[0.3em] text-peacock font-medium mb-5 max-w-md"
+          className="text-xs uppercase tracking-[0.3em] text-peacock font-semibold mb-5 max-w-md"
         >
           {t(content.familyNotice)}
         </motion.p>
@@ -114,7 +114,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Quick Details (Date, Venue) */}
         <motion.div
           variants={itemVariants}
-          className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-peacock/90 text-[13px] tracking-wider uppercase font-medium mb-12 border-y border-gold/20 py-4 px-6 w-full max-w-xl ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-peacock/90 text-[13px] tracking-wider uppercase font-medium mb-12 bg-ivory/42 backdrop-blur-xl rounded-full py-4 px-6 w-full max-w-2xl shadow-[0_22px_70px_rgba(23,63,58,0.12)] ${
             language === "bn" ? "font-bengali-sans" : "font-poppins"
           }`}
         >
@@ -132,7 +132,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Action Buttons (CTAs) */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4"
+          className="flex flex-row flex-wrap items-center justify-center gap-4 w-full px-4"
         >
           {/* Primary View Details CTA */}
           <button
@@ -148,7 +148,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleUploadClick}
-            className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-peacock/30 hover:border-gold text-peacock hover:text-gold font-medium text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-peacock/20 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 bg-ivory/45 backdrop-blur-xl hover:bg-ivory/70 text-peacock hover:text-gold font-medium text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-peacock/20 cursor-pointer shadow-[0_14px_40px_rgba(23,63,58,0.08)]"
           >
             {t(content.uploadMemoriesCTA)}
             <ExternalLink size={12} className="opacity-80" />

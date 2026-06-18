@@ -8,7 +8,7 @@ interface OrnamentProps {
   delay?: number;
 }
 
-// 1. Wedding Monogram (S & B) inside a delicate, thin organic wreath
+// 1. Wedding date seal inside a delicate, thin organic wreath
 export function WeddingMonogram({ className = "", delay = 0 }: OrnamentProps) {
   return (
     <motion.div
@@ -67,39 +67,30 @@ export function WeddingMonogram({ className = "", delay = 0 }: OrnamentProps) {
         />
         <circle cx="50" cy="67" r="1.5" strokeWidth="0.75" />
 
-        {/* Monogram Letters */}
+        {/* Date seal */}
         <text
-          x="35"
-          y="56"
-          fontFamily="var(--font-calligraphy), cursive"
-          fontSize="24"
-          fill="currentColor"
-          stroke="none"
-          className="font-normal"
-        >
-          S
-        </text>
-        <text
-          x="46"
-          y="56"
+          x="50"
+          y="49"
+          textAnchor="middle"
           fontFamily="var(--font-poppins), sans-serif"
-          fontSize="10"
+          fontSize="13"
           fill="currentColor"
           stroke="none"
-          className="opacity-70 font-light"
+          className="font-semibold tracking-widest"
         >
-          &
+          11·07
         </text>
         <text
-          x="55"
-          y="56"
-          fontFamily="var(--font-calligraphy), cursive"
-          fontSize="24"
+          x="50"
+          y="62"
+          textAnchor="middle"
+          fontFamily="var(--font-poppins), sans-serif"
+          fontSize="7"
           fill="currentColor"
           stroke="none"
-          className="font-normal"
+          className="opacity-70 font-medium tracking-[0.3em]"
         >
-          B
+          2026
         </text>
       </svg>
     </motion.div>

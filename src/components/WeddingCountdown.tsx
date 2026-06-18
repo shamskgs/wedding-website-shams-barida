@@ -93,7 +93,7 @@ export default function WeddingCountdown() {
   const labels = weddingContent.countdown.labels;
 
   return (
-    <section className="bg-white py-16 px-6 border-b border-gold/10 relative overflow-hidden">
+    <section className="py-10 px-6 relative overflow-hidden">
       <div className="max-w-4xl mx-auto flex flex-col items-center">
         <AnimatePresence mode="wait">
           {timeLeft.isComplete ? (
@@ -115,13 +115,13 @@ export default function WeddingCountdown() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full flex flex-col items-center"
+              className="w-full flex flex-col items-center bg-ivory/36 backdrop-blur-xl rounded-[2rem] px-5 py-8 md:px-10 md:py-10 shadow-[0_28px_90px_rgba(23,63,58,0.12)]"
             >
               {/* Thin, elegant inline countdown cells */}
-              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none">
+              <div className="flex items-center justify-center gap-3 md:gap-10 text-peacock select-none">
                 {/* Days */}
                 <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center">
+                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center">
                     {formatNumber(timeLeft.days)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
@@ -129,11 +129,11 @@ export default function WeddingCountdown() {
                   </span>
                 </div>
 
-                <div className="h-10 w-[1px] bg-gold/25" />
+                <div className="h-10 w-[1px] bg-gold/30" />
 
                 {/* Hours */}
                 <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center">
+                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center">
                     {formatNumber(timeLeft.hours)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
@@ -141,11 +141,11 @@ export default function WeddingCountdown() {
                   </span>
                 </div>
 
-                <div className="h-10 w-[1px] bg-gold/25" />
+                <div className="h-10 w-[1px] bg-gold/30" />
 
                 {/* Minutes */}
                 <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center">
+                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center">
                     {formatNumber(timeLeft.minutes)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
@@ -153,11 +153,11 @@ export default function WeddingCountdown() {
                   </span>
                 </div>
 
-                <div className="h-10 w-[1px] bg-gold/25" />
+                <div className="h-10 w-[1px] bg-gold/30" />
 
                 {/* Seconds */}
                 <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center text-gold">
+                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center text-gold">
                     {formatNumber(timeLeft.seconds)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gold/75 mt-2 font-medium">

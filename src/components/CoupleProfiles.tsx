@@ -12,10 +12,11 @@ interface ProfileCardProps {
   role: string;
   image: string;
   bio: string;
+  details?: string[];
   isBride?: boolean;
 }
 
-function ProfileCard({ name, role, image, bio, isBride = false }: ProfileCardProps) {
+function ProfileCard({ name, role, image, bio, details = [], isBride = false }: ProfileCardProps) {
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -24,19 +25,19 @@ function ProfileCard({ name, role, image, bio, isBride = false }: ProfileCardPro
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1.0, ease: "easeOut" }}
-      className="flex flex-col items-center text-center max-w-sm mx-auto group"
+      className="flex flex-col items-center text-center max-w-sm mx-auto group bg-ivory/32 backdrop-blur-xl rounded-[2rem] px-6 py-8 shadow-[0_28px_90px_rgba(23,63,58,0.10)]"
     >
       {/* Portrait Container */}
-      <div className="relative w-64 h-80 mb-6 p-2 bg-white border border-gold/20 shadow-md transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden">
+      <div className="relative w-64 h-80 mb-6 p-2 bg-ivory/55 backdrop-blur-md shadow-md transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden rounded-[1.5rem]">
         {/* Fine border outline inside frame */}
-        <div className="absolute inset-3 border border-gold/10 pointer-events-none z-10" />
+        <div className="absolute inset-3 rounded-[1.15rem] bg-gradient-to-br from-white/18 to-transparent pointer-events-none z-10" />
 
         {/* Foliage corner details */}
         <FoliageCorner position="top-left" className="top-1 left-1 scale-75" />
         <FoliageCorner position="bottom-right" className="bottom-1 right-1 scale-75" />
 
         {/* The Image */}
-        <div className="w-full h-full relative bg-ivory overflow-hidden flex items-center justify-center">
+        <div className="w-full h-full relative bg-ivory overflow-hidden flex items-center justify-center rounded-[1.15rem]">
           {imageError || !image ? (
             /* Elegant Fallback Graphic if image fails to load */
             <div className="w-full h-full flex flex-col items-center justify-center p-6 border border-gold/10 text-gold/40">
@@ -75,6 +76,19 @@ function ProfileCard({ name, role, image, bio, isBride = false }: ProfileCardPro
       <p className="text-charcoal/80 text-xs leading-relaxed tracking-wider font-light max-w-[280px]">
         {bio}
       </p>
+
+      {details.length > 0 && (
+        <div className="mt-6 flex flex-wrap justify-center gap-2 max-w-[290px]">
+          {details.map((detail) => (
+            <span
+              key={detail}
+              className="rounded-full bg-white/35 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-peacock/78 shadow-[0_8px_24px_rgba(23,63,58,0.06)]"
+            >
+              {detail}
+            </span>
+          ))}
+        </div>
+      )}
     </m.div>
   );
 }
@@ -84,7 +98,7 @@ export default function CoupleProfiles() {
   const profiles = weddingContent.profiles;
 
   return (
-    <section id="couple" className="bg-ivory py-24 px-6 relative border-b border-gold/10">
+    <section id="couple" className="py-24 px-6 relative overflow-hidden">
       {/* Background soft details */}
       <div className="absolute top-10 left-10 text-sage/15 rotate-12 pointer-events-none hidden md:block">
         <svg width="150" height="150" viewBox="0 0 100 100" fill="currentColor">
@@ -120,6 +134,7 @@ export default function CoupleProfiles() {
             role={t(profiles.groom.role)}
             image={profiles.groom.image}
             bio={t(profiles.groom.bio)}
+            details={profiles.groom.details?.map(t)}
           />
 
           {/* Bride Profile */}
@@ -128,6 +143,7 @@ export default function CoupleProfiles() {
             role={t(profiles.bride.role)}
             image={profiles.bride.image}
             bio={t(profiles.bride.bio)}
+            details={profiles.bride.details?.map(t)}
             isBride={true}
           />
         </div>
