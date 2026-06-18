@@ -38,10 +38,10 @@ export default function AbstractWeddingBackground() {
 
     // Color definitions with very low opacity for subtle atmospheric blending
     const colors = [
-      "rgba(217, 70, 115, 0.18)", // Wedding rose
-      "rgba(217, 154, 36, 0.16)", // Marigold gold
-      "rgba(16, 185, 129, 0.12)", // Soft emerald
-      "rgba(14, 116, 144, 0.10)", // Peacock blue
+      "rgba(201, 154, 159, 0.16)", // Dusty rose
+      "rgba(181, 139, 78, 0.14)", // Antique gold
+      "rgba(169, 183, 164, 0.14)", // Soft sage
+      "rgba(23, 63, 58, 0.08)", // Deep peacock
     ];
 
     // Initialize floating organic blobs
@@ -104,10 +104,10 @@ export default function AbstractWeddingBackground() {
 
       // Colorful wedding canvas base.
       const baseGradient = ctx.createLinearGradient(0, 0, width, height);
-      baseGradient.addColorStop(0, "#FFF1F2");
-      baseGradient.addColorStop(0.35, "#FEF3C7");
-      baseGradient.addColorStop(0.68, "#DCFCE7");
-      baseGradient.addColorStop(1, "#F5D0FE");
+      baseGradient.addColorStop(0, "#F8F4EC");
+      baseGradient.addColorStop(0.42, "#EFE6D8");
+      baseGradient.addColorStop(0.74, "#E5EBDD");
+      baseGradient.addColorStop(1, "#F3E1E3");
       ctx.fillStyle = baseGradient;
       ctx.fillRect(0, 0, width, height);
 
@@ -150,7 +150,7 @@ export default function AbstractWeddingBackground() {
       });
 
       // Overlay an elegant fine mesh texture
-      ctx.strokeStyle = "rgba(217, 154, 36, 0.04)"; // very faint gold lines
+      ctx.strokeStyle = "rgba(181, 139, 78, 0.04)"; // very faint gold lines
       ctx.lineWidth = 0.5;
       const step = 40;
       for (let x = 0; x < width; x += step) {
@@ -179,7 +179,7 @@ export default function AbstractWeddingBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none bg-[#FFF1F2]">
+    <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none bg-ivory">
       {/* 2D Canvas for GPU-friendly abstract animations */}
       <canvas
         ref={canvasRef}

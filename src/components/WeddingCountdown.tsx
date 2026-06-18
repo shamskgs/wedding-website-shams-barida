@@ -118,7 +118,7 @@ export default function WeddingCountdown() {
               className="w-full flex flex-col items-center"
             >
               {/* Thin, elegant inline countdown cells */}
-              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none rounded-full border border-[#D99A24]/35 bg-[#FFF7ED]/65 px-5 py-5 shadow-[0_24px_80px_rgba(217,154,36,0.20)] backdrop-blur-md">
+              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none rounded-full border border-gold/30 bg-ivory/65 px-5 py-5 shadow-[0_24px_80px_rgba(181,139,78,0.16)] backdrop-blur-md">
                 {/* Days */}
                 <motion.div
                   whileHover={{ y: -3, scale: 1.02 }}

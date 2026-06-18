@@ -23,14 +23,14 @@ export default function Home() {
   return (
     <LanguageProvider>
       <AudioProvider>
-        <div className="relative flex flex-col min-h-screen overflow-hidden bg-[linear-gradient(135deg,#FFF1F2_0%,#FFE4E6_18%,#FEF3C7_38%,#DCFCE7_58%,#DBEAFE_78%,#F5D0FE_100%)]">
+        <div className="relative flex flex-col min-h-screen overflow-hidden bg-[linear-gradient(135deg,#F8F4EC_0%,#EFE6D8_38%,#E5EBDD_68%,#F3E1E3_100%)]">
           <SparklesCore
-            className="fixed inset-0 z-[2] opacity-65 mix-blend-multiply"
-            particleColor="#D99A24"
-            particleDensity={135}
-            minSize={1}
-            maxSize={3}
-            speed={3.2}
+            className="fixed inset-0 z-[2] opacity-50 mix-blend-multiply"
+            particleColor="#B58B4E"
+            particleDensity={120}
+            minSize={0.9}
+            maxSize={2.6}
+            speed={2.7}
           />
 
           {/* Global Navigation Bar */}
