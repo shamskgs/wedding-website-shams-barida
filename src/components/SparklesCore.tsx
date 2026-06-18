@@ -2,8 +2,9 @@
 
 import React, { useId, useMemo } from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
-import type { Engine } from "@tsparticles/engine";
+import type { Container, Engine } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
+import { motion, useAnimation } from "framer-motion";
 
 type SparklesCoreProps = {
   id?: string;
@@ -32,7 +33,17 @@ export default function SparklesCore({
   particleColor = "#B58B4E",
   particleDensity = 95,
 }: SparklesCoreProps) {
+  const controls = useAnimation();
   const generatedId = useId();
+
+  const particlesLoaded = async (container?: Container) => {
+    if (!container) return;
+
+    await controls.start({
+      opacity: 1,
+      transition: { duration: 1.2 },
+    });
+  };
 
   const sizeMin = minSize ?? particleSize ?? 0.8;
   const sizeMax = maxSize ?? particleSize ?? 2.4;
@@ -116,13 +127,17 @@ export default function SparklesCore({
 
   return (
     <ParticlesProvider init={async (engine: Engine) => loadSlim(engine)}>
-      <div className={cx("pointer-events-none", className)}>
+      <motion.div
+        animate={controls}
+        className={cx("opacity-0 pointer-events-none", className)}
+      >
         <Particles
           id={id || generatedId}
           className="h-full w-full"
+          particlesLoaded={particlesLoaded}
           options={options}
         />
-      </div>
+      </motion.div>
     </ParticlesProvider>
   );
 }
