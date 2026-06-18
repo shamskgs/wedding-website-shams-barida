@@ -80,8 +80,8 @@ export const weddingContent = {
       bn: "SWID Convention Center"
     },
     location: {
-      en: "Dhaka, Bangladesh",
-      bn: "ঢাকা, বাংলাদেশ"
+      en: "Dhaka",
+      bn: "ঢাকা"
     },
     viewDetailsCTA: {
       en: "View Details",
