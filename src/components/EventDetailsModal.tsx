@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { PeacockFeather } from "./Ornaments";
 import { X, Calendar, Clock, MapPin, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -95,7 +94,7 @@ export default function EventDetailsModal({
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-charcoal/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-[rgba(27,23,20,0.55)]"
           onClick={handleBackdropClick}
           role="dialog"
           aria-modal="true"
@@ -107,22 +106,17 @@ export default function EventDetailsModal({
             initial={{ opacity: 0, y: 100, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.95 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="w-full sm:max-w-md bg-white border border-gold/15 shadow-2xl rounded-t-3xl sm:rounded-2xl p-8 relative flex flex-col max-h-[90vh] overflow-y-auto"
+            transition={{ type: "spring", damping: 28, stiffness: 260 }}
+            className="w-full sm:max-w-md bg-[var(--paper-soft)] border border-[rgba(27,23,20,0.12)] rounded-t-3xl sm:rounded-none sm:rounded-[1.5rem] p-8 relative flex flex-col max-h-[90vh] overflow-y-auto"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full text-charcoal/50 hover:text-gold hover:bg-ivory transition-colors focus:outline-none focus:ring-2 focus:ring-gold"
+              className="absolute top-4 right-4 p-2 rounded-full text-[rgba(27,23,20,0.55)] hover:text-peacock hover:bg-[rgba(27,23,20,0.04)] transition-colors focus:outline-none focus:ring-2 focus:ring-peacock/20"
               aria-label="Close details modal"
             >
               <X size={20} />
             </button>
-
-            {/* Subtle feather ornament */}
-            <div className="absolute top-6 left-6 text-gold/10 pointer-events-none">
-              <PeacockFeather className="w-16 h-28 opacity-10" />
-            </div>
 
             {/* Modal Header */}
             <div className="text-center mb-8 mt-2">
@@ -134,23 +128,23 @@ export default function EventDetailsModal({
                 className={`text-peacock leading-none ${
                   language === "bn"
                     ? "font-bengali-serif text-2xl font-bold"
-                    : "font-poppins text-xl font-bold tracking-wide"
+                    : "font-calligraphy text-2xl font-normal"
                 }`}
               >
                 {t(content.title)}
               </h2>
-              <div className="h-[1px] w-24 bg-gold/30 mx-auto mt-3" />
+              <div className="editorial-rule mx-auto mt-4 max-w-[6rem]" />
             </div>
 
             {/* Modal Content / Description */}
             <div id="modal-description" className="space-y-6 text-charcoal/80 text-sm font-light tracking-wide">
               {/* Date */}
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-ivory text-gold mt-0.5">
+                <div className="p-2 rounded-lg bg-[rgba(27,23,20,0.04)] text-gold mt-0.5">
                   <Calendar size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-[0.15em] text-peacock font-semibold mb-1">
+                  <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
                     {language === "bn" ? "তারিখ" : "Date"}
                   </h4>
                   <p className="font-medium">{t(content.dateLabel)}</p>
@@ -159,11 +153,11 @@ export default function EventDetailsModal({
 
               {/* Time */}
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-ivory text-gold mt-0.5">
+                <div className="p-2 rounded-lg bg-[rgba(27,23,20,0.04)] text-gold mt-0.5">
                   <Clock size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-[0.15em] text-peacock font-semibold mb-1">
+                  <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
                     {language === "bn" ? "সময়" : "Time"}
                   </h4>
                   <p className="font-medium">{t(content.timeLabel)}</p>
@@ -172,11 +166,11 @@ export default function EventDetailsModal({
 
               {/* Venue */}
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-ivory text-gold mt-0.5">
+                <div className="p-2 rounded-lg bg-[rgba(27,23,20,0.04)] text-gold mt-0.5">
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-[0.15em] text-peacock font-semibold mb-1">
+                  <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
                     {language === "bn" ? "স্থান ও ঠিকানা" : "Venue & Address"}
                   </h4>
                   <p className="font-semibold text-peacock">{t(content.venueName)}</p>
@@ -191,7 +185,7 @@ export default function EventDetailsModal({
                 href={content.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 bg-peacock hover:bg-gold text-ivory text-xs uppercase tracking-[0.15em] font-semibold rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gold"
+                className="editorial-button editorial-button--filled w-full gap-2"
               >
                 {t(content.openMapsCTA)}
                 <ExternalLink size={13} />
@@ -199,7 +193,7 @@ export default function EventDetailsModal({
 
               <button
                 onClick={onClose}
-                className="w-full py-3 border border-charcoal/15 hover:border-gold text-charcoal hover:text-gold text-xs uppercase tracking-[0.15em] font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold/30"
+                className="editorial-button editorial-button--ghost w-full"
               >
                 {language === "bn" ? "বন্ধ করুন" : "Close"}
               </button>

@@ -3,7 +3,6 @@
 import React from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { FloralDivider } from "./Ornaments";
 import { Calendar, Clock, MapPin, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -20,87 +19,87 @@ export default function ProgramSection({
   const content = weddingContent.program;
 
   return (
-    <section id="program" className="py-24 px-6 relative">
-      <div className="max-w-4xl mx-auto flex flex-col items-center">
-        {/* Section Header */}
+    <section id="program" className="editorial-section editorial-section--ivory">
+      <div className="editorial-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-xl"
         >
-          <span className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold mb-2 block">
-            {language === "bn" ? "তারিখ ও ভেন্যু" : "Details"}
-          </span>
+          <div className="editorial-label mb-5">
+            {language === "bn" ? "অনুষ্ঠানসূচি" : "The Program"}
+          </div>
           <h2
-            className={`text-peacock leading-tight ${
-              language === "bn"
-                ? "font-bengali-serif text-3xl font-semibold"
-                : "font-calligraphy text-5xl font-medium"
+            className={`editorial-heading text-[clamp(3rem,6.5vw,6.2rem)] ${
+              language === "bn" ? "font-bengali-serif font-semibold" : ""
             }`}
           >
             {t(content.title)}
           </h2>
-          <FloralDivider />
+          <div className="editorial-rule my-6 max-w-sm" />
+          <p className="editorial-copy max-w-md">
+            {language === "bn"
+              ? "সময়, স্থান এবং যাত্রাপথটি এখানে একসঙ্গে রাখা হয়েছে, যাতে অতিথিরা সহজে অনুষ্ঠানটি অনুসরণ করতে পারেন।"
+              : "Date, time, and venue are laid out with the same clarity and restraint as the rest of the invitation."}
+          </p>
         </motion.div>
 
-        {/* Editorial Program Card */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.0, ease: "easeOut" }}
-          className="w-full max-w-3xl bg-ivory/34 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 relative overflow-hidden shadow-[0_30px_100px_rgba(23,63,58,0.13)]"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+          className="max-w-3xl"
         >
-          <div className="relative z-10 flex flex-col items-center text-center gap-8">
-            <div className="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-5">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/36 px-5 py-3 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-peacock shadow-[0_12px_34px_rgba(23,63,58,0.07)]">
-                <Calendar size={17} className="text-gold" />
+          <div className="editorial-rule mb-6" />
+
+          <div className="grid gap-8">
+            <div className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-[rgba(27,23,20,0.58)]">
+              <span className="inline-flex items-center gap-2">
+                <Calendar size={14} className="text-gold" />
                 {t(content.dateLabel)}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/36 px-5 py-3 text-xs md:text-sm font-semibold uppercase tracking-[0.16em] text-peacock shadow-[0_12px_34px_rgba(23,63,58,0.07)]">
-                <Clock size={17} className="text-gold" />
+              <span className="hidden sm:inline text-[rgba(27,23,20,0.28)]">/</span>
+              <span className="inline-flex items-center gap-2">
+                <Clock size={14} className="text-gold" />
                 {t(content.timeLabel)}
               </span>
             </div>
 
-            <div className="flex max-w-xl flex-col items-center gap-3 text-center">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-peacock text-ivory shadow-[0_16px_36px_rgba(23,63,58,0.20)]">
-                <MapPin size={20} />
-              </span>
+            <div className="grid gap-5 rounded-none border-y border-[rgba(27,23,20,0.12)] py-6 md:grid-cols-[0.78fr_1.22fr] md:gap-10">
               <div>
-                <h3 className="font-calligraphy text-3xl text-peacock">
-                  {t(content.venueName)}
+                <h3 className="font-poppins text-[10px] uppercase tracking-[0.28em] text-[rgba(27,23,20,0.55)]">
+                  {language === "bn" ? "স্থান" : "Venue"}
                 </h3>
-                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed tracking-wide">
-                  {t(content.address)}
+                <p className="mt-3 font-calligraphy text-[clamp(2.1rem,4vw,3.4rem)] leading-[0.95] text-peacock">
+                  {t(content.venueName)}
                 </p>
               </div>
+              <div>
+                <p className="editorial-copy">{t(content.address)}</p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <button
+                    ref={viewDetailsButtonRef}
+                    onClick={onOpenDetails}
+                    className="editorial-button editorial-button--filled w-full sm:w-auto"
+                  >
+                    {language === "bn" ? "বিস্তারিত দেখুন" : "View Details"}
+                  </button>
+
+                  <a
+                    href={content.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="editorial-button editorial-button--ghost w-full sm:w-auto gap-2"
+                  >
+                    {t(content.openMapsCTA)}
+                    <ExternalLink size={12} />
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="mt-10 flex flex-row flex-wrap items-center justify-center gap-4 relative z-10">
-            {/* View Details CTA */}
-            <button
-              ref={viewDetailsButtonRef}
-              onClick={onOpenDetails}
-              className="w-full sm:w-auto px-6 py-3 bg-peacock hover:bg-gold text-ivory text-xs uppercase tracking-[0.15em] font-semibold rounded-full transition-all duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-gold"
-            >
-              {language === "bn" ? "বিস্তারিত দেখুন" : "View Details"}
-            </button>
-
-            {/* Google Maps CTA */}
-            <a
-              href={content.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3 bg-white/34 backdrop-blur-xl hover:bg-white/50 text-peacock hover:text-gold text-xs uppercase tracking-[0.15em] font-semibold rounded-full flex items-center justify-center gap-2 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-peacock/10 shadow-[0_12px_34px_rgba(23,63,58,0.07)]"
-            >
-              {t(content.openMapsCTA)}
-              <ExternalLink size={12} />
-            </a>
           </div>
         </motion.div>
       </div>

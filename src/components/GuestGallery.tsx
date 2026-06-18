@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { FloralDivider } from "./Ornaments";
 import GalleryLightbox from "./GalleryLightbox";
 import { Camera } from "lucide-react";
 import { motion } from "framer-motion";
@@ -16,8 +15,6 @@ export default function GuestGallery() {
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Store broken image IDs to filter them out instead of showing blank shapes
   const [brokenImageIds, setBrokenImageIds] = useState<string[]>([]);
 
   const handleImageClick = (index: number) => {
@@ -29,56 +26,45 @@ export default function GuestGallery() {
     setBrokenImageIds((prev) => [...prev, id]);
   };
 
-  // Filter out any images that failed to load
   const visibleItems = items.filter((item) => !brokenImageIds.includes(item.id));
 
   return (
-    <section id="gallery" className="py-24 px-6 relative">
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
-        {/* Section Header */}
+    <section id="gallery" className="editorial-section editorial-section--ivory">
+      <div className="editorial-shell">
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 max-w-2xl"
         >
-          <span className="text-[11px] uppercase tracking-[0.3em] text-gold font-semibold mb-2 block">
-            {language === "bn" ? "ফটোগ্যালারি" : "Gallery"}
-          </span>
-          <h2
-            className={`text-peacock leading-tight ${
-              language === "bn"
-                ? "font-bengali-serif text-3xl font-semibold"
-                : "font-calligraphy text-5xl font-medium"
-            }`}
-          >
+          <div className="editorial-label mb-5">
+            {language === "bn" ? "স্মৃতির সংগ্রহ" : "Guest Memories"}
+          </div>
+          <h2 className="editorial-heading text-[clamp(3rem,6.5vw,6rem)]">
             {t(gallery.title)}
           </h2>
-          <FloralDivider />
+          <div className="editorial-rule mt-6 max-w-md" />
         </motion.div>
 
-        {/* Masonry Layout or Empty State */}
         {visibleItems.length === 0 ? (
-          /* Elegant Empty State */
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-full max-w-xl rounded-[2rem] p-12 text-center flex flex-col items-center bg-ivory/34 backdrop-blur-xl shadow-[0_24px_80px_rgba(23,63,58,0.10)]"
+            className="max-w-3xl border-y border-[rgba(27,23,20,0.12)] py-14"
           >
-            <div className="p-4 rounded-full bg-white/34 text-gold/80 mb-4 shadow-[0_12px_32px_rgba(23,63,58,0.07)]">
-              <Camera size={32} />
+            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-[rgba(27,23,20,0.55)]">
+              <Camera size={14} className="text-gold" />
+              {language === "bn" ? "অতিথি স্মৃতি" : "Guest Memories"}
             </div>
-            <p className="text-charcoal/60 text-xs md:text-sm tracking-wider font-light max-w-xs leading-relaxed">
+            <p className="editorial-copy mt-5 max-w-xl">
               {t(gallery.emptyState)}
             </p>
           </motion.div>
         ) : (
-          /* Responsive Masonry Layout */
-          <div className="w-full columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
+          <div className="columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3">
             {visibleItems.map((item, index) => {
-              // Map ratios to Tailwind class heights to prevent layout shifts
               const heightClass =
                 item.aspectRatio === "portrait"
                   ? "aspect-[3/4]"
@@ -87,49 +73,39 @@ export default function GuestGallery() {
                   : "aspect-[4/3]";
 
               return (
-                <motion.div
+                <motion.button
                   key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: (index % 3) * 0.1 }}
-                  className="break-inside-avoid relative overflow-hidden rounded-[1.35rem] bg-white/34 backdrop-blur-xl p-2.5 shadow-[0_18px_54px_rgba(23,63,58,0.08)] group hover:shadow-[0_24px_70px_rgba(23,63,58,0.12)] transition-all duration-300 cursor-pointer"
+                  transition={{ duration: 0.85, delay: (index % 3) * 0.08 }}
+                  className="break-inside-avoid w-full text-left"
                   onClick={() => handleImageClick(index)}
                 >
-                  <div className={`relative w-full ${heightClass} bg-ivory overflow-hidden rounded-[1rem]`}>
-                    <Image
-                      src={item.url}
-                      alt={item.caption ? t(item.caption) : "Guest Memory"}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      onError={() => handleImageError(item.id)}
-                      loading="lazy"
-                    />
-
-                    {/* Subtle Gold Hover Overlay */}
-                    <div className="absolute inset-0 bg-peacock/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                      <div className="p-2 rounded-full bg-white/95 text-peacock shadow-md transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        <Camera size={16} />
-                      </div>
+                  <div className="group">
+                    <div className={`editorial-image-frame ${heightClass}`}>
+                      <Image
+                        src={item.url}
+                        alt={item.caption ? t(item.caption) : "Guest Memory"}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                        onError={() => handleImageError(item.id)}
+                        loading="lazy"
+                      />
                     </div>
-                  </div>
-
-                  {/* Caption (only visible when provided) */}
-                  {item.caption && (
-                    <div className="mt-3 px-1 text-left">
-                      <p className="text-charcoal/80 text-[11px] font-medium tracking-wide">
+                    {item.caption && (
+                      <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-[rgba(27,23,20,0.55)]">
                         {t(item.caption)}
                       </p>
-                    </div>
-                  )}
-                </motion.div>
+                    )}
+                  </div>
+                </motion.button>
               );
             })}
           </div>
         )}
 
-        {/* Lightbox Modal */}
         <GalleryLightbox
           isOpen={lightboxOpen}
           onClose={() => setLightboxOpen(false)}

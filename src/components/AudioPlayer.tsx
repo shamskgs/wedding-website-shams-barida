@@ -13,7 +13,7 @@ export default function AudioPlayer() {
   return (
     <button
       onClick={togglePlay}
-      className="relative flex items-center justify-center p-2 rounded-full border border-gold/30 hover:border-gold bg-ivory/80 text-peacock hover:text-gold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+      className="relative flex items-center justify-center rounded-full border border-[rgba(27,23,20,0.14)] bg-[rgba(247,241,231,0.88)] p-2 text-peacock transition-colors duration-300 hover:border-peacock hover:text-peacock focus:outline-none focus-visible:ring-2 focus-visible:ring-peacock/20"
       aria-label={isPlaying ? "Mute background music" : "Play background music"}
       title={isPlaying ? "Mute Music" : "Play Music"}
     >
@@ -25,17 +25,17 @@ export default function AudioPlayer() {
             <motion.div
               animate={{ height: ["20%", "100%", "20%"] }}
               transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
-              className="w-[2px] bg-gold rounded-full"
+              className="w-[2px] bg-peacock rounded-full"
             />
             <motion.div
               animate={{ height: ["40%", "100%", "40%"] }}
               transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut", delay: 0.2 }}
-              className="w-[2px] bg-gold rounded-full"
+              className="w-[2px] bg-peacock rounded-full"
             />
             <motion.div
               animate={{ height: ["10%", "100%", "10%"] }}
               transition={{ repeat: Infinity, duration: 1.0, ease: "easeInOut", delay: 0.4 }}
-              className="w-[2px] bg-gold rounded-full"
+              className="w-[2px] bg-peacock rounded-full"
             />
           </div>
         </div>

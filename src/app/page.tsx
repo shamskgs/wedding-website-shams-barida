@@ -14,7 +14,6 @@ import GuestGallery from "@/components/GuestGallery";
 import FamilyMessage from "@/components/FamilyMessage";
 import ContactSection from "@/components/ContactSection";
 import WeddingFooter from "@/components/WeddingFooter";
-import DreamySparkles from "@/components/DreamySparkles";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,8 +22,7 @@ export default function Home() {
   return (
     <LanguageProvider>
       <AudioProvider>
-        <div className="relative flex flex-col min-h-screen overflow-hidden bg-[linear-gradient(145deg,#f8f4ec_0%,#eef3ec_34%,#f3e5df_67%,#f8f4ec_100%)]">
-          <DreamySparkles />
+        <div className="relative flex min-h-screen flex-col overflow-hidden editorial-story">
           {/* Global Navigation Bar */}
           <WeddingNavbar />
 

@@ -78,7 +78,7 @@ export default function GalleryLightbox({
   return (
     <AnimatePresence>
       <div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/95 backdrop-blur-md select-none"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(27,23,20,0.92)] select-none"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -88,7 +88,7 @@ export default function GalleryLightbox({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-50 p-3 rounded-full bg-white/5 hover:bg-white/10 text-white hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold"
+          className="absolute top-6 right-6 z-50 p-3 rounded-full border border-[rgba(246,239,230,0.18)] bg-[rgba(246,239,230,0.05)] text-white transition-colors hover:bg-[rgba(246,239,230,0.1)] focus:outline-none focus:ring-2 focus:ring-[rgba(246,239,230,0.3)]"
           aria-label={language === "bn" ? "বন্ধ করুন" : "Close Lightbox"}
         >
           <X size={24} />
@@ -98,7 +98,7 @@ export default function GalleryLightbox({
         {items.length > 1 && (
           <button
             onClick={handlePrev}
-            className="absolute left-4 z-50 p-3 rounded-full bg-white/5 hover:bg-white/10 text-white hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold"
+            className="absolute left-4 z-50 p-3 rounded-full border border-[rgba(246,239,230,0.18)] bg-[rgba(246,239,230,0.05)] text-white transition-colors hover:bg-[rgba(246,239,230,0.1)] focus:outline-none focus:ring-2 focus:ring-[rgba(246,239,230,0.3)]"
             aria-label={language === "bn" ? "পূর্ববর্তী ছবি" : "Previous Image"}
           >
             <ChevronLeft size={28} />
@@ -109,7 +109,7 @@ export default function GalleryLightbox({
         {items.length > 1 && (
           <button
             onClick={handleNext}
-            className="absolute right-4 z-50 p-3 rounded-full bg-white/5 hover:bg-white/10 text-white hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold"
+            className="absolute right-4 z-50 p-3 rounded-full border border-[rgba(246,239,230,0.18)] bg-[rgba(246,239,230,0.05)] text-white transition-colors hover:bg-[rgba(246,239,230,0.1)] focus:outline-none focus:ring-2 focus:ring-[rgba(246,239,230,0.3)]"
             aria-label={language === "bn" ? "পরবর্তী ছবি" : "Next Image"}
           >
             <ChevronRight size={28} />

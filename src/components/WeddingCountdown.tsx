@@ -93,8 +93,11 @@ export default function WeddingCountdown() {
   const labels = weddingContent.countdown.labels;
 
   return (
-    <section className="py-10 px-6 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto flex flex-col items-center">
+    <section className="editorial-section editorial-section--ivory py-20 md:py-24">
+      <div className="editorial-shell flex flex-col items-center">
+        <div className="editorial-label mb-6">
+          {language === "bn" ? "গণনা" : "Countdown"}
+        </div>
         <AnimatePresence mode="wait">
           {timeLeft.isComplete ? (
             <motion.div
@@ -102,12 +105,12 @@ export default function WeddingCountdown() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="text-center"
+              className="text-center max-w-3xl"
             >
-              <h3 className="font-calligraphy text-peacock text-3xl md:text-5xl font-medium tracking-wide mb-3">
+              <h3 className="editorial-heading mb-4 text-[clamp(2.6rem,6vw,5rem)]">
                 {t(weddingContent.countdown.completionMessage)}
               </h3>
-              <FloralDivider />
+              <div className="editorial-rule mx-auto max-w-md" />
             </motion.div>
           ) : (
             <motion.div
@@ -115,56 +118,47 @@ export default function WeddingCountdown() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="w-full flex flex-col items-center bg-ivory/36 backdrop-blur-xl rounded-[2rem] px-5 py-8 md:px-10 md:py-10 shadow-[0_28px_90px_rgba(23,63,58,0.12)]"
+              className="w-full max-w-5xl"
             >
-              {/* Thin, elegant inline countdown cells */}
-              <div className="flex items-center justify-center gap-3 md:gap-10 text-peacock select-none">
-                {/* Days */}
-                <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center">
+              <div className="editorial-rule mb-8" />
+              <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 md:gap-10 text-peacock select-none">
+                <div className="text-center">
+                  <span className="block font-poppins text-[clamp(3rem,8vw,5.6rem)] font-light leading-none tracking-[-0.04em]">
                     {formatNumber(timeLeft.days)}
                   </span>
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
+                  <span className="mt-3 block text-[10px] md:text-xs uppercase tracking-[0.22em] text-charcoal/60 font-medium">
                     {t(labels.days)}
                   </span>
                 </div>
 
-                <div className="h-10 w-[1px] bg-gold/30" />
-
-                {/* Hours */}
-                <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center">
+                <div className="text-center">
+                  <span className="block font-poppins text-[clamp(3rem,8vw,5.6rem)] font-light leading-none tracking-[-0.04em]">
                     {formatNumber(timeLeft.hours)}
                   </span>
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
+                  <span className="mt-3 block text-[10px] md:text-xs uppercase tracking-[0.22em] text-charcoal/60 font-medium">
                     {t(labels.hours)}
                   </span>
                 </div>
 
-                <div className="h-10 w-[1px] bg-gold/30" />
-
-                {/* Minutes */}
-                <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center">
+                <div className="text-center">
+                  <span className="block font-poppins text-[clamp(3rem,8vw,5.6rem)] font-light leading-none tracking-[-0.04em]">
                     {formatNumber(timeLeft.minutes)}
                   </span>
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
+                  <span className="mt-3 block text-[10px] md:text-xs uppercase tracking-[0.22em] text-charcoal/60 font-medium">
                     {t(labels.minutes)}
                   </span>
                 </div>
 
-                <div className="h-10 w-[1px] bg-gold/30" />
-
-                {/* Seconds */}
-                <div className="flex flex-col items-center">
-                  <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-14 md:w-24 text-center text-gold">
+                <div className="text-center">
+                  <span className="block font-poppins text-[clamp(3rem,8vw,5.6rem)] font-light leading-none tracking-[-0.04em] text-gold">
                     {formatNumber(timeLeft.seconds)}
                   </span>
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gold/75 mt-2 font-medium">
+                  <span className="mt-3 block text-[10px] md:text-xs uppercase tracking-[0.22em] text-gold/75 font-medium">
                     {t(labels.seconds)}
                   </span>
                 </div>
               </div>
+              <div className="editorial-rule mt-8" />
             </motion.div>
           )}
         </AnimatePresence>

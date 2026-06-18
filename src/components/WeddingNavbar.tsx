@@ -46,31 +46,31 @@ export default function WeddingNavbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           scrolled
-            ? "bg-ivory/62 backdrop-blur-xl py-3 shadow-[0_12px_40px_rgba(23,63,58,0.09)]"
+            ? "bg-[rgba(247,241,231,0.96)] py-3 border-b border-[rgba(27,23,20,0.08)]"
             : "bg-transparent py-5"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <div className="editorial-shell px-6 flex items-center justify-between gap-4">
           {/* Logo / Monogram */}
           <a
             href="#home"
             onClick={(e) => handleScrollTo(e, "home")}
-            className="flex items-center text-peacock hover:text-gold transition-colors font-calligraphy text-xl md:text-2xl font-semibold tracking-wide"
+            className="flex items-center font-calligraphy text-lg md:text-2xl text-peacock transition-colors hover:text-gold"
           >
             {weddingContent.navigation.monogram}
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
                 onClick={(e) => handleScrollTo(e, link.id)}
-                className="text-xs uppercase tracking-[0.2em] font-medium text-charcoal/80 hover:text-gold transition-colors relative group py-1"
+                className="text-[10px] uppercase tracking-[0.26em] font-medium text-[rgba(27,23,20,0.76)] hover:text-peacock transition-colors relative group py-1"
               >
                 {t(link.label)}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-peacock transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -80,7 +80,7 @@ export default function WeddingNavbar() {
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="text-[11px] font-semibold tracking-wider px-3 py-1.5 rounded-full bg-ivory/62 backdrop-blur-xl text-peacock hover:text-gold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold shadow-[0_8px_24px_rgba(23,63,58,0.06)]"
+              className="editorial-button editorial-button--ghost py-2 px-3 text-[10px]"
               aria-label={
                 language === "en" ? "বাংলা ভাষায় পরিবর্তন করুন" : "Switch to English"
               }
@@ -111,7 +111,7 @@ export default function WeddingNavbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden absolute top-full left-0 right-0 bg-ivory/78 backdrop-blur-xl shadow-lg overflow-hidden"
+              className="md:hidden absolute top-full left-0 right-0 bg-[rgba(247,241,231,0.96)] border-b border-[rgba(27,23,20,0.08)] overflow-hidden"
             >
               <div className="flex flex-col items-center py-6 gap-5 px-6">
                 {navLinks.map((link) => (
@@ -119,7 +119,7 @@ export default function WeddingNavbar() {
                     key={link.id}
                     href={`#${link.id}`}
                     onClick={(e) => handleScrollTo(e, link.id)}
-                    className="text-sm uppercase tracking-[0.15em] font-medium text-charcoal/90 hover:text-gold transition-colors py-2 w-full text-center border-b border-gold/5"
+                    className="text-xs uppercase tracking-[0.22em] font-medium text-[rgba(27,23,20,0.84)] hover:text-peacock transition-colors py-2 w-full text-center border-b border-[rgba(27,23,20,0.06)]"
                   >
                     {t(link.label)}
                   </a>

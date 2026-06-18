@@ -3,7 +3,6 @@
 import React from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { FloralDivider, FoliageCorner } from "./Ornaments";
 import { motion } from "framer-motion";
 
 export default function FamilyMessage() {
@@ -11,48 +10,43 @@ export default function FamilyMessage() {
   const content = weddingContent.familyMessage;
 
   return (
-    <section className="py-24 px-6 relative overflow-hidden">
-      {/* Decorative foliage detail corners */}
-      <div className="absolute top-0 right-0 w-24 h-24 text-sage/15 rotate-90 pointer-events-none hidden md:block">
-        <FoliageCorner position="top-right" className="scale-75" />
-      </div>
-      <div className="absolute bottom-0 left-0 w-24 h-24 text-sage/15 -rotate-90 pointer-events-none hidden md:block">
-        <FoliageCorner position="bottom-left" className="scale-75" />
-      </div>
-
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-        {/* Editorial Frame Wrap */}
+    <section className="editorial-section editorial-section--dark">
+      <div className="editorial-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.0, ease: "easeOut" }}
-          className="w-full max-w-xl p-8 md:p-12 bg-ivory/34 backdrop-blur-xl rounded-[2rem] relative shadow-[0_30px_90px_rgba(23,63,58,0.11)]"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-sm"
         >
-          {/* Heading */}
-          <span className="text-[10px] uppercase tracking-[0.25em] text-gold font-semibold mb-2 block">
-            {language === "bn" ? "আশীর্বাদ" : "Blessings"}
-          </span>
+          <div className="editorial-label text-[rgba(246,239,230,0.68)] mb-5">
+            {language === "bn" ? "পরিবারের বার্তা" : "From Our Families"}
+          </div>
           <h2
-            className={`text-peacock mb-4 leading-tight ${
-              language === "bn"
-                ? "font-bengali-serif text-2xl font-bold"
-                : "font-poppins text-lg font-bold tracking-wide"
+            className={`editorial-heading editorial-heading--dark text-[clamp(2.8rem,6vw,5.4rem)] ${
+              language === "bn" ? "font-bengali-serif font-semibold" : ""
             }`}
           >
             {t(content.title)}
           </h2>
+        </motion.div>
 
-          <FloralDivider className="py-2" />
-
-          {/* Emotional Message Body */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+          className="max-w-3xl"
+        >
+          <div className="editorial-rule editorial-rule--dark mb-7" />
           <p
-            className={`text-charcoal/85 text-xs md:text-sm leading-relaxed tracking-wider font-light italic mt-6 max-w-md mx-auto ${
-              language === "bn" ? "font-bengali-sans" : "font-poppins"
+            className={`editorial-copy editorial-copy--dark max-w-2xl text-[clamp(1.05rem,1.6vw,1.25rem)] ${
+              language === "bn" ? "font-bengali-sans" : ""
             }`}
           >
-            &ldquo;{t(content.message)}&rdquo;
+            {t(content.message)}
           </p>
+          <div className="mt-10 editorial-rule editorial-rule--dark" />
         </motion.div>
       </div>
     </section>
