@@ -14,7 +14,6 @@ import GuestGallery from "@/components/GuestGallery";
 import FamilyMessage from "@/components/FamilyMessage";
 import ContactSection from "@/components/ContactSection";
 import WeddingFooter from "@/components/WeddingFooter";
-import SparklesCore from "@/components/SparklesCore";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,16 +22,7 @@ export default function Home() {
   return (
     <LanguageProvider>
       <AudioProvider>
-        <div className="relative flex flex-col min-h-screen">
-          <SparklesCore
-            className="fixed inset-0 z-[5] opacity-45 mix-blend-multiply"
-            particleColor="#B58B4E"
-            particleDensity={110}
-            minSize={0.8}
-            maxSize={2.6}
-            speed={2.8}
-          />
-
+        <div className="flex flex-col min-h-screen">
           {/* Global Navigation Bar */}
           <WeddingNavbar />
 
