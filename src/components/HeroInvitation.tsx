@@ -123,16 +123,16 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Quick Details (Date, Venue) */}
         <motion.div
           variants={itemVariants}
-          className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-peacock/90 text-[13px] tracking-wider uppercase font-medium mb-12 border-y border-gold/20 py-4 px-6 w-full max-w-3xl ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-peacock/90 text-[13px] tracking-wider uppercase font-medium mb-12 border-y border-gold/20 py-4 px-6 w-full max-w-xl ${
             language === "bn" ? "font-bengali-sans" : "font-poppins"
           }`}
         >
-          <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          <span className="flex items-center gap-2">
             <Calendar size={15} className="text-gold" />
             {t(content.date)} · {t(content.time)}
           </span>
-          <span className="text-gold/40">|</span>
-          <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          <span className="hidden sm:inline text-gold/40">|</span>
+          <span className="flex items-center gap-2">
             <MapPin size={15} className="text-gold" />
             {t(content.venue)}, {t(content.location)}
           </span>
