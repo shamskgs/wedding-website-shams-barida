@@ -48,24 +48,24 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden px-4 md:px-6"
+      className="relative isolate min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden px-4 md:px-6"
     >
       {/* Abstract Animated Background */}
       <AbstractWeddingBackground />
       <SparklesCore
-        className="absolute inset-0 -z-10"
-        particleColor="#B58B4E"
-        particleDensity={85}
-        minSize={0.7}
-        maxSize={2.2}
-        speed={2}
+        className="absolute inset-0 z-0 opacity-80"
+        particleColor="#8F6A35"
+        particleDensity={140}
+        minSize={1}
+        maxSize={3.6}
+        speed={3.2}
       />
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl mx-auto text-center flex flex-col items-center z-10"
+        className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center"
       >
         {/* Monogram ornament at top */}
         <motion.div variants={itemVariants} className="mb-6 opacity-80">
