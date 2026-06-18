@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-ivory: #F8F4EC;
+  --color-peacock: #173F3A;
+  --color-gold: #B58B4E;
+  --color-rose: #C99A9F;
+  --color-charcoal: #282421;
+  --color-sage: #A9B7A4;
+  --color-white: #FFFFFF;
+
+  /* Font Families mapped to CSS variables */
+  --font-calligraphy: var(--font-calligraphy), cursive;
+  --font-poppins: var(--font-poppins), sans-serif;
+  --font-bengali-serif: var(--font-bengali-serif), serif;
+  --font-bengali-sans: var(--font-bengali-sans), sans-serif;
+
+  /* Custom Transitions */
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+:root {
+  --background: #F8F4EC; /* Warm Ivory */
+  --foreground: #282421; /* Charcoal */
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-poppins), sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F4EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B58B4E;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #173F3A;
+}
+
+/* Selection Color */
+::selection {
+  background-color: #173F3A;
+  color: #F8F4EC;
+}
+
+/* Accessibility Focus States */
+*:focus-visible {
+  outline: 2px solid #B58B4E;
+  outline-offset: 4px;
+}
+
+/* Custom utility utilities for leaf/feather shapes */
+.leaf-mask-1 {
+  clip-path: ellipse(50% 60% at 50% 50%);
+}
+
+.editorial-frame {
+  position: relative;
+  padding: 1rem;
+}
+
+.editorial-frame::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #B58B4E;
+  margin: 1.5rem;
+  pointer-events: none;
+}
