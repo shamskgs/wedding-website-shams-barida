@@ -20,23 +20,23 @@ export default function DreamySparkles() {
   useEffect(() => {
     const buildSparkles = () => {
       const isSmallScreen = window.innerWidth < 768;
-      const count = isSmallScreen ? 34 : 48;
+      const count = isSmallScreen ? 42 : 60;
 
       setSparkles(
         Array.from({ length: count }, (_, id) => {
-          const sizePx = 1.8 + Math.random() * 4.8;
-          const opacity = 0.45 + Math.random() * 0.55;
+          const sizePx = 0.9 + Math.random() * 1.8;
+          const opacity = 0.14 + Math.random() * 0.42;
 
           return {
             id,
             left: `${(Math.random() * 100).toFixed(2)}%`,
             top: `${(Math.random() * (isSmallScreen ? 100 : 96)).toFixed(2)}%`,
             size: `${sizePx.toFixed(2)}px`,
-            delay: `${(Math.random() * 6).toFixed(2)}s`,
-            duration: `${(4 + Math.random() * 5).toFixed(2)}s`,
+            delay: `${(Math.random() * 10).toFixed(2)}s`,
+            duration: `${(6 + Math.random() * 7).toFixed(2)}s`,
             opacity: Number(opacity.toFixed(2)),
-            blur: `${(Math.random() * 1.4).toFixed(2)}px`,
-            drift: `${(-14 + Math.random() * 28).toFixed(1)}px`,
+            blur: `${(0.2 + Math.random() * 0.9).toFixed(2)}px`,
+            drift: `${(-4 + Math.random() * 8).toFixed(1)}px`,
           };
         })
       );
