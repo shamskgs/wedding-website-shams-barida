@@ -4,7 +4,6 @@ import React from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 import AbstractWeddingBackground from "./AbstractWeddingBackground";
-import SparklesCore from "./SparklesCore";
 import { WeddingMonogram } from "./Ornaments";
 import { motion } from "framer-motion";
 import { ExternalLink, Calendar, MapPin, ChevronDown } from "lucide-react";
@@ -52,14 +51,6 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
     >
       {/* Abstract Animated Background */}
       <AbstractWeddingBackground />
-      <SparklesCore
-        className="absolute inset-0 -z-10"
-        particleColor="#B58B4E"
-        particleDensity={85}
-        minSize={0.7}
-        maxSize={2.2}
-        speed={2}
-      />
 
       <motion.div
         variants={containerVariants}
