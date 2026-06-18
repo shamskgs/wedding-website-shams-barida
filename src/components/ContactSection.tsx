@@ -28,7 +28,7 @@ export default function ContactSection() {
   if (activeContacts.length === 0) return null;
 
   return (
-    <section id="contact" className="bg-transparent py-24 px-6 border-b border-white/30 relative">
+    <section id="contact" className="bg-ivory py-24 px-6 border-b border-gold/10 relative">
       <div className="max-w-4xl mx-auto flex flex-col items-center">
         {/* Section Header */}
         <motion.div
@@ -62,8 +62,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.15 }}
-              whileHover={{ y: -4 }}
-              className="bg-[#FFF7ED]/70 border border-[#D99A24]/35 rounded-[1.25rem] p-6 shadow-[0_22px_70px_rgba(217,154,36,0.16)] flex flex-col items-center text-center relative backdrop-blur-md"
+              className="bg-white border border-gold/15 rounded-xl p-6 shadow-sm flex flex-col items-center text-center relative"
             >
               {/* Optional relation tag (Groom's Side / Bride's Side) */}
               {contact.relation && (

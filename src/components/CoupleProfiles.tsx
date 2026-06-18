@@ -27,7 +27,7 @@ function ProfileCard({ name, role, image, bio, isBride = false }: ProfileCardPro
       className="flex flex-col items-center text-center max-w-sm mx-auto group"
     >
       {/* Portrait Container */}
-      <div className="relative w-64 h-80 mb-6 p-2 bg-[#FFF7ED]/75 border border-[#D94673]/30 shadow-[0_24px_70px_rgba(217,70,115,0.18)] transition-transform duration-500 group-hover:scale-[1.03] overflow-hidden backdrop-blur-md">
+      <div className="relative w-64 h-80 mb-6 p-2 bg-white border border-gold/20 shadow-md transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden">
         {/* Fine border outline inside frame */}
         <div className="absolute inset-3 border border-gold/10 pointer-events-none z-10" />
 
@@ -84,7 +84,7 @@ export default function CoupleProfiles() {
   const profiles = weddingContent.profiles;
 
   return (
-    <section id="couple" className="bg-transparent py-24 px-6 relative border-b border-white/30">
+    <section id="couple" className="bg-ivory py-24 px-6 relative border-b border-gold/10">
       {/* Background soft details */}
       <div className="absolute top-10 left-10 text-sage/15 rotate-12 pointer-events-none hidden md:block">
         <svg width="150" height="150" viewBox="0 0 100 100" fill="currentColor">

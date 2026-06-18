@@ -93,7 +93,8 @@ export default function WeddingCountdown() {
   const labels = weddingContent.countdown.labels;
 
   return (
-    <section className="bg-transparent py-16 px-6 border-b border-white/30 relative overflow-hidden">
+    <section className="bg-[linear-gradient(135deg,#F8F4EC_0%,#EFE6D6_46%,#E9EFE5_100%)] py-16 px-6 border-b border-gold/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(181,139,78,0.14),transparent_32%),radial-gradient(circle_at_80%_70%,rgba(201,154,159,0.16),transparent_34%)] pointer-events-none" />
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
         <AnimatePresence mode="wait">
           {timeLeft.isComplete ? (
@@ -118,7 +119,7 @@ export default function WeddingCountdown() {
               className="w-full flex flex-col items-center"
             >
               {/* Thin, elegant inline countdown cells */}
-              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none rounded-full border border-[#D99A24]/35 bg-[#FFF7ED]/65 px-5 py-5 shadow-[0_24px_80px_rgba(217,154,36,0.20)] backdrop-blur-md">
+              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none rounded-full border border-gold/20 bg-ivory/45 px-5 py-5 shadow-[0_20px_70px_rgba(23,63,58,0.08)] backdrop-blur-md">
                 {/* Days */}
                 <motion.div
                   whileHover={{ y: -3, scale: 1.02 }}

@@ -56,7 +56,9 @@ export default function ProgramSection({
   };
 
   return (
-    <section id="program" className="bg-transparent py-24 px-6 border-b border-white/30 relative overflow-hidden">
+    <section id="program" className="bg-[linear-gradient(160deg,#F3E9DA_0%,#F8F4EC_48%,#E7EDE2_100%)] py-24 px-6 border-b border-gold/10 relative overflow-hidden">
+      <div className="absolute -top-24 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-0 h-64 w-64 rounded-full bg-rose/15 blur-3xl pointer-events-none" />
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
         {/* Section Header */}
         <motion.div
@@ -88,13 +90,13 @@ export default function ProgramSection({
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: "easeOut" }}
           whileHover={{ y: -4 }}
-          className="w-full max-w-2xl bg-[#FFF7ED]/70 border border-[#D99A24]/40 rounded-[1.75rem] p-8 md:p-12 relative overflow-hidden shadow-[0_32px_95px_rgba(217,154,36,0.24)] backdrop-blur-md"
+          className="w-full max-w-2xl bg-ivory/55 border border-gold/25 rounded-[1.75rem] p-8 md:p-12 relative overflow-hidden shadow-[0_28px_90px_rgba(23,63,58,0.10)] backdrop-blur-md"
         >
           <motion.div
             aria-hidden="true"
-            animate={{ x: ["-20%", "20%", "-20%"], opacity: [0.22, 0.45, 0.22] }}
+            animate={{ x: ["-20%", "20%", "-20%"], opacity: [0.18, 0.32, 0.18] }}
             transition={{ repeat: Infinity, duration: 9, ease: "easeInOut" }}
-            className="absolute inset-y-0 left-1/2 w-40 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#D94673]/25 to-transparent blur-2xl"
+            className="absolute inset-y-0 left-1/2 w-40 -translate-x-1/2 bg-gradient-to-r from-transparent via-gold/20 to-transparent blur-2xl"
           />
           {/* Subtle Frame Outline */}
           <div className="absolute inset-4 rounded-[1.25rem] border border-gold/10 pointer-events-none" />

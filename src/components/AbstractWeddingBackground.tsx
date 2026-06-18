@@ -38,10 +38,10 @@ export default function AbstractWeddingBackground() {
 
     // Color definitions with very low opacity for subtle atmospheric blending
     const colors = [
-      "rgba(217, 70, 115, 0.18)", // Wedding rose
-      "rgba(217, 154, 36, 0.16)", // Marigold gold
-      "rgba(16, 185, 129, 0.12)", // Soft emerald
-      "rgba(14, 116, 144, 0.10)", // Peacock blue
+      "rgba(169, 183, 164, 0.12)", // Soft Sage
+      "rgba(201, 154, 159, 0.10)", // Dusty Rose
+      "rgba(181, 139, 78, 0.08)",  // Antique Gold
+      "rgba(23, 63, 58, 0.04)",    // Deep Peacock Green (very light)
     ];
 
     // Initialize floating organic blobs
@@ -102,13 +102,8 @@ export default function AbstractWeddingBackground() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Colorful wedding canvas base.
-      const baseGradient = ctx.createLinearGradient(0, 0, width, height);
-      baseGradient.addColorStop(0, "#FFF1F2");
-      baseGradient.addColorStop(0.35, "#FEF3C7");
-      baseGradient.addColorStop(0.68, "#DCFCE7");
-      baseGradient.addColorStop(1, "#F5D0FE");
-      ctx.fillStyle = baseGradient;
+      // Base background color (Warm Ivory fallback representation in canvas)
+      ctx.fillStyle = "#F8F4EC";
       ctx.fillRect(0, 0, width, height);
 
       // Draw and animate each blob
@@ -150,7 +145,7 @@ export default function AbstractWeddingBackground() {
       });
 
       // Overlay an elegant fine mesh texture
-      ctx.strokeStyle = "rgba(217, 154, 36, 0.04)"; // very faint gold lines
+      ctx.strokeStyle = "rgba(181, 139, 78, 0.025)"; // very faint gold lines
       ctx.lineWidth = 0.5;
       const step = 40;
       for (let x = 0; x < width; x += step) {
@@ -179,7 +174,7 @@ export default function AbstractWeddingBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none bg-[#FFF1F2]">
+    <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none bg-ivory">
       {/* 2D Canvas for GPU-friendly abstract animations */}
       <canvas
         ref={canvasRef}
@@ -187,7 +182,7 @@ export default function AbstractWeddingBackground() {
         style={{ filter: "blur(20px)" }} // Extra CSS blur filters for organic blending
       />
       {/* Subtle ivory gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-[#FFF7ED]/20 to-transparent -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ivory/30 to-ivory -z-10" />
     </div>
   );
 }
