@@ -11,7 +11,7 @@ export default function FamilyMessage() {
   const content = weddingContent.familyMessage;
 
   return (
-    <section className="bg-[radial-gradient(circle_at_top_left,rgba(181,139,78,0.14),transparent_34%),linear-gradient(135deg,#F8F4EC_0%,#EFE8DC_50%,#E8EEE4_100%)] py-24 px-6 border-b border-gold/10 relative overflow-hidden">
+    <section className="bg-transparent py-24 px-6 border-b border-white/30 relative overflow-hidden">
       {/* Decorative foliage detail corners */}
       <div className="absolute top-0 right-0 w-24 h-24 text-sage/15 rotate-90 pointer-events-none hidden md:block">
         <FoliageCorner position="top-right" className="scale-75" />
@@ -28,7 +28,7 @@ export default function FamilyMessage() {
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: "easeOut" }}
           whileHover={{ y: -4 }}
-          className="w-full max-w-xl p-8 md:p-12 bg-ivory/55 border border-gold/25 rounded-[1.75rem] relative shadow-[0_28px_90px_rgba(23,63,58,0.10)] backdrop-blur-md"
+          className="w-full max-w-xl p-8 md:p-12 bg-[#FFF7ED]/70 border border-[#D94673]/30 rounded-[1.75rem] relative shadow-[0_28px_90px_rgba(217,70,115,0.16)] backdrop-blur-md"
         >
           {/* Subtle inside line */}
           <div className="absolute inset-3 rounded-[1.25rem] border border-gold/10 pointer-events-none" />

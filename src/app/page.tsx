@@ -23,20 +23,20 @@ export default function Home() {
   return (
     <LanguageProvider>
       <AudioProvider>
-        <div className="relative flex flex-col min-h-screen">
+        <div className="relative flex flex-col min-h-screen overflow-hidden bg-[linear-gradient(135deg,#FFF1F2_0%,#FFE4E6_18%,#FEF3C7_38%,#DCFCE7_58%,#DBEAFE_78%,#F5D0FE_100%)]">
           <SparklesCore
-            className="fixed inset-0 z-[5] opacity-45 mix-blend-multiply"
-            particleColor="#B58B4E"
-            particleDensity={110}
-            minSize={0.8}
-            maxSize={2.6}
-            speed={2.8}
+            className="fixed inset-0 z-[2] opacity-65 mix-blend-multiply"
+            particleColor="#D99A24"
+            particleDensity={135}
+            minSize={1}
+            maxSize={3}
+            speed={3.2}
           />
 
           {/* Global Navigation Bar */}
           <WeddingNavbar />
 
-          <main className="flex-grow">
+          <main className="relative z-10 flex-grow">
             {/* Sections */}
             <HeroInvitation onOpenDetails={() => setModalOpen(true)} />
             <WeddingCountdown />
