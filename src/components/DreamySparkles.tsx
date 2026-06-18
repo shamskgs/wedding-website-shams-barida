@@ -20,7 +20,7 @@ export default function DreamySparkles() {
   useEffect(() => {
     const buildSparkles = () => {
       const isSmallScreen = window.innerWidth < 768;
-      const count = isSmallScreen ? 30 : 38;
+      const count = isSmallScreen ? 34 : 48;
 
       setSparkles(
         Array.from({ length: count }, (_, id) => {
@@ -49,16 +49,18 @@ export default function DreamySparkles() {
   }, []);
 
   return (
-    <div className="dreamy-sparkles fixed inset-0 pointer-events-none z-[6]" aria-hidden="true">
+    <div className="dreamy-sparkles fixed inset-0 pointer-events-none z-[7]" aria-hidden="true">
       {sparkles.map((sparkle) => (
         <span
           key={sparkle.id}
+          className="dreamy-sparkle"
           style={
             {
               left: sparkle.left,
               top: sparkle.top,
               width: sparkle.size,
               height: sparkle.size,
+              "--sparkle-size": sparkle.size,
               opacity: sparkle.opacity,
               filter: `blur(${sparkle.blur})`,
               animationDelay: sparkle.delay,

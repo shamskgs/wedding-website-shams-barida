@@ -58,37 +58,89 @@ body {
   overflow-x: hidden;
 }
 
+.dreamy-sparkles {
+  mix-blend-mode: screen;
+}
+
 .dreamy-sparkles span {
   position: absolute;
   display: block;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(255, 244, 200, 1) 0%, rgba(181, 139, 78, 0.9) 42%, rgba(181, 139, 78, 0) 72%);
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 250, 226, 0.98) 24%, rgba(255, 232, 166, 0.72) 48%, rgba(255, 232, 166, 0) 78%);
   box-shadow:
-    0 0 10px rgba(181, 139, 78, 0.7),
-    0 0 24px rgba(255, 229, 157, 0.42);
+    0 0 10px rgba(255, 255, 255, 0.92),
+    0 0 20px rgba(255, 238, 186, 0.72),
+    0 0 34px rgba(255, 216, 128, 0.32);
   opacity: 0;
   animation-name: dreamy-sparkle;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   will-change: transform, opacity;
+  transform-origin: center;
+}
+
+.dreamy-sparkles span::before,
+.dreamy-sparkles span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.95) 18%,
+    rgba(255, 248, 230, 0.95) 50%,
+    rgba(255, 255, 255, 0.95) 82%,
+    rgba(255, 255, 255, 0)
+  );
+  transform: translate(-50%, -50%);
+}
+
+.dreamy-sparkles span::before {
+  width: calc(var(--sparkle-size, 3px) * 3.2);
+  height: 1px;
+}
+
+.dreamy-sparkles span::after {
+  width: 1px;
+  height: calc(var(--sparkle-size, 3px) * 3.2);
+}
+
+.dreamy-sparkles .dreamy-sparkle {
+  --sparkle-size: 3px;
+  animation-name: dreamy-sparkle, dreamy-sparkle-flicker;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
 }
 
 @keyframes dreamy-sparkle {
   0% {
     opacity: 0;
-    transform: translate3d(0, 10px, 0) scale(0.55);
+    transform: translate3d(0, 10px, 0) scale(0.35) rotate(12deg);
   }
   35% {
     opacity: 0.95;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1) rotate(45deg);
   }
   70% {
     opacity: 0.4;
-    transform: translate3d(var(--sparkle-drift, 0px), -12px, 0) scale(0.75);
+    transform: translate3d(var(--sparkle-drift, 0px), -12px, 0) scale(0.82) rotate(78deg);
   }
   100% {
     opacity: 0;
-    transform: translate3d(calc(var(--sparkle-drift, 0px) * -0.2), -18px, 0) scale(0.55);
+    transform: translate3d(calc(var(--sparkle-drift, 0px) * -0.2), -18px, 0) scale(0.35) rotate(112deg);
+  }
+}
+
+@keyframes dreamy-sparkle-flicker {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1.05);
+  }
+  50% {
+    filter: brightness(1.18) saturate(1.15);
   }
 }
 
