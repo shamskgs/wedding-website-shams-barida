@@ -93,8 +93,9 @@ export default function WeddingCountdown() {
   const labels = weddingContent.countdown.labels;
 
   return (
-    <section className="bg-white py-16 px-6 border-b border-gold/10 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto flex flex-col items-center">
+    <section className="bg-[linear-gradient(135deg,#F8F4EC_0%,#EFE6D6_46%,#E9EFE5_100%)] py-16 px-6 border-b border-gold/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(181,139,78,0.14),transparent_32%),radial-gradient(circle_at_80%_70%,rgba(201,154,159,0.16),transparent_34%)] pointer-events-none" />
+      <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10">
         <AnimatePresence mode="wait">
           {timeLeft.isComplete ? (
             <motion.div
@@ -118,52 +119,68 @@ export default function WeddingCountdown() {
               className="w-full flex flex-col items-center"
             >
               {/* Thin, elegant inline countdown cells */}
-              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none">
+              <div className="flex items-center justify-center gap-4 md:gap-10 text-peacock select-none rounded-full border border-gold/20 bg-ivory/45 px-5 py-5 shadow-[0_20px_70px_rgba(23,63,58,0.08)] backdrop-blur-md">
                 {/* Days */}
-                <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex flex-col items-center"
+                >
                   <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center">
                     {formatNumber(timeLeft.days)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
                     {t(labels.days)}
                   </span>
-                </div>
+                </motion.div>
 
                 <div className="h-10 w-[1px] bg-gold/25" />
 
                 {/* Hours */}
-                <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex flex-col items-center"
+                >
                   <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center">
                     {formatNumber(timeLeft.hours)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
                     {t(labels.hours)}
                   </span>
-                </div>
+                </motion.div>
 
                 <div className="h-10 w-[1px] bg-gold/25" />
 
                 {/* Minutes */}
-                <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex flex-col items-center"
+                >
                   <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center">
                     {formatNumber(timeLeft.minutes)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-charcoal/60 mt-2 font-medium">
                     {t(labels.minutes)}
                   </span>
-                </div>
+                </motion.div>
 
                 <div className="h-10 w-[1px] bg-gold/25" />
 
                 {/* Seconds */}
-                <div className="flex flex-col items-center">
+                <motion.div
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex flex-col items-center"
+                >
                   <span className="font-poppins text-4xl md:text-6xl font-light tracking-wide w-16 md:w-24 text-center text-gold">
                     {formatNumber(timeLeft.seconds)}
                   </span>
                   <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-gold/75 mt-2 font-medium">
                     {t(labels.seconds)}
                   </span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           )}

@@ -11,7 +11,7 @@ export default function FamilyMessage() {
   const content = weddingContent.familyMessage;
 
   return (
-    <section className="bg-white py-24 px-6 border-b border-gold/10 relative overflow-hidden">
+    <section className="bg-[radial-gradient(circle_at_top_left,rgba(181,139,78,0.14),transparent_34%),linear-gradient(135deg,#F8F4EC_0%,#EFE8DC_50%,#E8EEE4_100%)] py-24 px-6 border-b border-gold/10 relative overflow-hidden">
       {/* Decorative foliage detail corners */}
       <div className="absolute top-0 right-0 w-24 h-24 text-sage/15 rotate-90 pointer-events-none hidden md:block">
         <FoliageCorner position="top-right" className="scale-75" />
@@ -20,17 +20,18 @@ export default function FamilyMessage() {
         <FoliageCorner position="bottom-left" className="scale-75" />
       </div>
 
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
+      <div className="max-w-3xl mx-auto text-center flex flex-col items-center relative z-10">
         {/* Editorial Frame Wrap */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.0, ease: "easeOut" }}
-          className="w-full max-w-xl p-8 md:p-12 bg-ivory/25 border border-gold/15 rounded-2xl relative shadow-sm"
+          whileHover={{ y: -4 }}
+          className="w-full max-w-xl p-8 md:p-12 bg-ivory/55 border border-gold/25 rounded-[1.75rem] relative shadow-[0_28px_90px_rgba(23,63,58,0.10)] backdrop-blur-md"
         >
           {/* Subtle inside line */}
-          <div className="absolute inset-3 border border-gold/5 pointer-events-none" />
+          <div className="absolute inset-3 rounded-[1.25rem] border border-gold/10 pointer-events-none" />
 
           {/* Heading */}
           <span className="text-[10px] uppercase tracking-[0.25em] text-gold font-semibold mb-2 block">
