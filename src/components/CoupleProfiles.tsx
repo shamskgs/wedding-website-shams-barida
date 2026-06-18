@@ -25,10 +25,10 @@ function ProfileCard({ name, role, image, bio, details = [], isBride = false }: 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1.0, ease: "easeOut" }}
-      className="flex flex-col items-center text-center max-w-sm mx-auto group bg-ivory/32 backdrop-blur-xl rounded-[2rem] px-6 py-8 shadow-[0_28px_90px_rgba(23,63,58,0.10)]"
+      className="flex flex-col items-center text-center max-w-[92vw] sm:max-w-sm mx-auto group bg-ivory/32 backdrop-blur-xl rounded-[2rem] px-5 sm:px-6 py-7 sm:py-8 shadow-[0_28px_90px_rgba(23,63,58,0.10)]"
     >
       {/* Portrait Container */}
-      <div className="relative w-64 h-80 mb-6 p-2 bg-ivory/55 backdrop-blur-md shadow-md transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden rounded-[1.5rem]">
+      <div className="relative w-[min(16.5rem,82vw)] h-[min(21.5rem,108vw)] sm:w-64 sm:h-80 mb-6 p-2 bg-ivory/55 backdrop-blur-md shadow-md transition-transform duration-500 group-hover:scale-[1.02] overflow-hidden rounded-[1.5rem]">
         {/* Fine border outline inside frame */}
         <div className="absolute inset-3 rounded-[1.15rem] bg-gradient-to-br from-white/18 to-transparent pointer-events-none z-10" />
 
@@ -73,12 +73,12 @@ function ProfileCard({ name, role, image, bio, details = [], isBride = false }: 
       </h3>
 
       {/* Bio Paragraph */}
-      <p className="text-charcoal/80 text-xs leading-relaxed tracking-wider font-light max-w-[280px]">
+      <p className="text-charcoal/80 text-xs leading-relaxed tracking-wide font-light max-w-[280px]">
         {bio}
       </p>
 
       {details.length > 0 && (
-        <div className="mt-6 flex flex-wrap justify-center gap-2 max-w-[290px]">
+        <div className="mt-5 sm:mt-6 flex flex-wrap justify-center gap-2 max-w-[290px]">
           {details.map((detail) => (
             <span
               key={detail}

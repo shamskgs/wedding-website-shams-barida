@@ -1,36 +1,71 @@
 "use client";
 
-const sparkles = [
-  ["7%", "14%", "3px", "0s", "5.2s"],
-  ["18%", "68%", "2px", "1.1s", "6s"],
-  ["26%", "28%", "4px", "0.4s", "5.6s"],
-  ["34%", "82%", "3px", "2s", "6.4s"],
-  ["42%", "18%", "2px", "1.7s", "5.8s"],
-  ["51%", "58%", "4px", "0.8s", "6.2s"],
-  ["63%", "11%", "3px", "2.4s", "5.4s"],
-  ["71%", "76%", "2px", "1.2s", "6.8s"],
-  ["82%", "33%", "4px", "0.2s", "5.7s"],
-  ["91%", "64%", "3px", "2.8s", "6.1s"],
-  ["12%", "44%", "2px", "3.1s", "5.9s"],
-  ["57%", "91%", "3px", "1.5s", "6.5s"],
-  ["76%", "49%", "2px", "3.5s", "5.3s"],
-  ["96%", "19%", "3px", "2.1s", "6.6s"],
-] as const;
+import React, { useEffect, useState } from "react";
+
+type Sparkle = {
+  id: number;
+  left: string;
+  top: string;
+  size: string;
+  delay: string;
+  duration: string;
+  opacity: number;
+  blur: string;
+  drift: string;
+};
 
 export default function DreamySparkles() {
+  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+
+  useEffect(() => {
+    const buildSparkles = () => {
+      const isSmallScreen = window.innerWidth < 768;
+      const count = isSmallScreen ? 30 : 38;
+
+      setSparkles(
+        Array.from({ length: count }, (_, id) => {
+          const sizePx = 1.8 + Math.random() * 4.8;
+          const opacity = 0.45 + Math.random() * 0.55;
+
+          return {
+            id,
+            left: `${(Math.random() * 100).toFixed(2)}%`,
+            top: `${(Math.random() * (isSmallScreen ? 100 : 96)).toFixed(2)}%`,
+            size: `${sizePx.toFixed(2)}px`,
+            delay: `${(Math.random() * 6).toFixed(2)}s`,
+            duration: `${(4 + Math.random() * 5).toFixed(2)}s`,
+            opacity: Number(opacity.toFixed(2)),
+            blur: `${(Math.random() * 1.4).toFixed(2)}px`,
+            drift: `${(-14 + Math.random() * 28).toFixed(1)}px`,
+          };
+        })
+      );
+    };
+
+    buildSparkles();
+
+    window.addEventListener("resize", buildSparkles);
+    return () => window.removeEventListener("resize", buildSparkles);
+  }, []);
+
   return (
     <div className="dreamy-sparkles fixed inset-0 pointer-events-none z-[6]" aria-hidden="true">
-      {sparkles.map(([left, top, size, delay, duration], index) => (
+      {sparkles.map((sparkle) => (
         <span
-          key={`${left}-${top}-${index}`}
-          style={{
-            left,
-            top,
-            width: size,
-            height: size,
-            animationDelay: delay,
-            animationDuration: duration,
-          }}
+          key={sparkle.id}
+          style={
+            {
+              left: sparkle.left,
+              top: sparkle.top,
+              width: sparkle.size,
+              height: sparkle.size,
+              opacity: sparkle.opacity,
+              filter: `blur(${sparkle.blur})`,
+              animationDelay: sparkle.delay,
+              animationDuration: sparkle.duration,
+              "--sparkle-drift": sparkle.drift,
+            } as React.CSSProperties
+          }
         />
       ))}
     </div>

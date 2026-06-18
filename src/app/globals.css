@@ -70,12 +70,13 @@ body {
   animation-name: dreamy-sparkle;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes dreamy-sparkle {
   0% {
     opacity: 0;
-    transform: translate3d(0, 8px, 0) scale(0.55);
+    transform: translate3d(0, 10px, 0) scale(0.55);
   }
   35% {
     opacity: 0.95;
@@ -83,11 +84,11 @@ body {
   }
   70% {
     opacity: 0.4;
-    transform: translate3d(0, -12px, 0) scale(0.75);
+    transform: translate3d(var(--sparkle-drift, 0px), -12px, 0) scale(0.75);
   }
   100% {
     opacity: 0;
-    transform: translate3d(0, -18px, 0) scale(0.55);
+    transform: translate3d(calc(var(--sparkle-drift, 0px) * -0.2), -18px, 0) scale(0.55);
   }
 }
 

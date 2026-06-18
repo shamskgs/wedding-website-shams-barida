@@ -47,7 +47,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 pb-16 overflow-hidden px-4 md:px-6"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden px-4 md:px-6"
     >
       {/* Abstract Animated Background */}
       <AbstractWeddingBackground />
@@ -56,17 +56,17 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl mx-auto text-center flex flex-col items-center z-10"
+        className="max-w-4xl mx-auto text-center flex flex-col items-center z-10 w-full"
       >
         {/* Monogram ornament at top */}
-        <motion.div variants={itemVariants} className="mb-6 opacity-80">
+        <motion.div variants={itemVariants} className="mb-5 opacity-80 scale-90 sm:scale-100">
           <WeddingMonogram />
         </motion.div>
 
         {/* Intro Tagline */}
         <motion.p
           variants={itemVariants}
-          className="text-xs uppercase tracking-[0.3em] text-peacock font-semibold mb-5 max-w-md"
+          className="text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.3em] text-peacock font-semibold mb-5 max-w-[18rem] sm:max-w-md px-2"
         >
           {t(content.familyNotice)}
         </motion.p>
@@ -77,24 +77,24 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
           className="flex flex-col items-center gap-1 md:gap-3 mb-6"
         >
           <h1
-            className={`text-peacock leading-none select-none transition-all duration-300 ${
+            className={`text-peacock leading-none select-none transition-all duration-300 text-balance ${
               language === "bn"
-                ? "font-bengali-serif text-3xl md:text-5xl font-semibold py-1"
-                : "font-calligraphy text-6xl md:text-8xl font-normal"
+                ? "font-bengali-serif text-3xl sm:text-4xl md:text-5xl font-semibold py-1"
+                : "font-calligraphy text-4xl sm:text-6xl md:text-8xl font-normal"
             }`}
           >
             {t(content.groomName)}
           </h1>
           
-          <span className="font-calligraphy text-3xl md:text-4xl text-gold/80 italic my-1 font-light">
+          <span className="font-calligraphy text-2xl sm:text-3xl md:text-4xl text-gold/80 italic my-1 font-light">
             {content.ampersand}
           </span>
           
           <h1
-            className={`text-peacock leading-none select-none transition-all duration-300 ${
+            className={`text-peacock leading-none select-none transition-all duration-300 text-balance ${
               language === "bn"
-                ? "font-bengali-serif text-3xl md:text-5xl font-semibold py-1"
-                : "font-calligraphy text-6xl md:text-8xl font-normal"
+                ? "font-bengali-serif text-3xl sm:text-4xl md:text-5xl font-semibold py-1"
+                : "font-calligraphy text-4xl sm:text-6xl md:text-8xl font-normal"
             }`}
           >
             {t(content.brideName)}
@@ -114,7 +114,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Quick Details (Date, Venue) */}
         <motion.div
           variants={itemVariants}
-          className={`flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-peacock/90 text-[13px] tracking-wider uppercase font-medium mb-12 bg-ivory/42 backdrop-blur-xl rounded-full py-4 px-6 w-full max-w-2xl shadow-[0_22px_70px_rgba(23,63,58,0.12)] ${
+          className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-peacock/90 text-[12px] sm:text-[13px] tracking-wider uppercase font-medium mb-12 bg-ivory/42 backdrop-blur-xl rounded-[1.75rem] sm:rounded-full py-4 px-4 sm:px-6 w-full max-w-[95vw] sm:max-w-2xl shadow-[0_22px_70px_rgba(23,63,58,0.12)] ${
             language === "bn" ? "font-bengali-sans" : "font-poppins"
           }`}
         >
@@ -132,12 +132,12 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Action Buttons (CTAs) */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-row flex-wrap items-center justify-center gap-4 w-full px-4"
+          className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full px-4 max-w-2xl"
         >
           {/* Primary View Details CTA */}
           <button
             onClick={onOpenDetails}
-            className="w-full sm:w-auto px-8 py-3.5 bg-peacock hover:bg-gold text-ivory font-medium text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gold/50 cursor-pointer"
+            className="w-full sm:w-auto px-8 py-3.5 bg-peacock hover:bg-gold text-ivory font-medium text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] rounded-full transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gold/50 cursor-pointer"
           >
             {t(content.viewDetailsCTA)}
           </button>
@@ -148,7 +148,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleUploadClick}
-            className="w-full sm:w-auto px-8 py-3.5 bg-ivory/45 backdrop-blur-xl hover:bg-ivory/70 text-peacock hover:text-gold font-medium text-xs uppercase tracking-[0.2em] rounded-full transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-peacock/20 cursor-pointer shadow-[0_14px_40px_rgba(23,63,58,0.08)]"
+            className="w-full sm:w-auto px-8 py-3.5 bg-ivory/45 backdrop-blur-xl hover:bg-ivory/70 text-peacock hover:text-gold font-medium text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] rounded-full transition-all duration-300 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-peacock/20 cursor-pointer shadow-[0_14px_40px_rgba(23,63,58,0.08)]"
           >
             {t(content.uploadMemoriesCTA)}
             <ExternalLink size={12} className="opacity-80" />
