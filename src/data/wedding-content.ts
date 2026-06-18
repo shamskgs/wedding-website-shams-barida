@@ -260,7 +260,8 @@ export const weddingContent = {
   },
 
   music: {
-    audioPath: "/audio/wedding-theme.mp3",
+    youtubeVideoId: "Hf03SC8l-f4",
+    youtubeUrl: "https://www.youtube.com/watch?v=Hf03SC8l-f4&list=RDHf03SC8l-f4&start_radio=1",
     // Set to true to show music control button in the Navbar
     // Set to false if there is no audio file or you wish to hide it
     enabled: true
