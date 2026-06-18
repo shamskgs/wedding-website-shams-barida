@@ -4,7 +4,6 @@ import React from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 import AbstractWeddingBackground from "./AbstractWeddingBackground";
-import SparklesCore from "./SparklesCore";
 import { WeddingMonogram } from "./Ornaments";
 import { motion } from "framer-motion";
 import { ExternalLink, Calendar, MapPin, ChevronDown } from "lucide-react";
@@ -52,14 +51,6 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
     >
       {/* Abstract Animated Background */}
       <AbstractWeddingBackground />
-      <SparklesCore
-        className="absolute inset-0 z-0 opacity-80"
-        particleColor="#8F6A35"
-        particleDensity={140}
-        minSize={1}
-        maxSize={3.6}
-        speed={3.2}
-      />
 
       <motion.div
         variants={containerVariants}
@@ -123,16 +114,16 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         {/* Quick Details (Date, Venue) */}
         <motion.div
           variants={itemVariants}
-          className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-peacock/90 text-[13px] tracking-wider uppercase font-medium mb-12 border-y border-gold/20 py-4 px-6 w-full max-w-3xl ${
+          className={`inline-flex max-w-full items-center justify-start overflow-x-auto whitespace-nowrap rounded-full border border-gold/25 bg-white/45 px-5 py-3 text-[10px] sm:text-xs md:text-[13px] tracking-[0.12em] sm:tracking-[0.18em] uppercase font-medium text-peacock/90 shadow-[0_18px_45px_rgba(23,63,58,0.08)] backdrop-blur-md mb-12 ${
             language === "bn" ? "font-bengali-sans" : "font-poppins"
           }`}
         >
-          <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          <span className="inline-flex items-center gap-2">
             <Calendar size={15} className="text-gold" />
             {t(content.date)} · {t(content.time)}
           </span>
-          <span className="text-gold/40">|</span>
-          <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          <span className="mx-4 h-4 w-px shrink-0 bg-gold/35" />
+          <span className="inline-flex items-center gap-2">
             <MapPin size={15} className="text-gold" />
             {t(content.venue)}, {t(content.location)}
           </span>
