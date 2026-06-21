@@ -14,17 +14,12 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>("en");
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
     const savedLang = localStorage.getItem("wedding-lang") as Language;
-    if (savedLang === "en" || savedLang === "bn") {
-      setLanguageState(savedLang);
-      document.documentElement.setAttribute("lang", savedLang);
-    } else {
-      document.documentElement.setAttribute("lang", "en");
-    }
+    const initialLanguage = savedLang === "en" || savedLang === "bn" ? savedLang : "en";
+    document.documentElement.setAttribute("lang", initialLanguage);
+    const timer = window.setTimeout(() => setLanguageState(initialLanguage), 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const setLanguage = (lang: Language) => {
@@ -40,7 +35,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {/* To avoid layout shift or hydration flash, render children only after mounted */}
       {children}
     </LanguageContext.Provider>
   );

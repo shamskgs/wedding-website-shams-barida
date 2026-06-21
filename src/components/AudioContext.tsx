@@ -6,7 +6,7 @@ import { weddingContent } from "@/data/wedding-content";
 declare global {
   interface Window {
     YT?: {
-      Player: any;
+      Player: new (elementId: string, options: YouTubePlayerOptions) => YouTubePlayer;
       PlayerState: {
         UNSTARTED: number;
         ENDED: number;
@@ -19,6 +19,27 @@ declare global {
     };
     onYouTubeIframeAPIReady?: () => void;
   }
+}
+
+interface YouTubePlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  setVolume: (volume: number) => void;
+  destroy: () => void;
+}
+
+interface YouTubePlayerEvent {
+  target: YouTubePlayer;
+  data: number;
+}
+
+interface YouTubePlayerOptions {
+  videoId: string;
+  playerVars: Record<string, string | number>;
+  events: {
+    onReady: (event: YouTubePlayerEvent) => void;
+    onStateChange: (event: YouTubePlayerEvent) => void;
+  };
 }
 
 interface AudioContextType {
@@ -65,7 +86,7 @@ function loadYouTubeApi() {
 
 export function AudioProvider({ children }: { children: React.ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<YouTubePlayer | null>(null);
   const readyRef = useRef(false);
   const audioEnabled = !!(
     weddingContent.music &&
@@ -98,7 +119,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
           disablekb: 1,
         },
         events: {
-          onReady: (event: any) => {
+          onReady: (event: YouTubePlayerEvent) => {
             readyRef.current = true;
             event.target.setVolume(35);
 
@@ -111,7 +132,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
               }
             }
           },
-          onStateChange: (event: any) => {
+          onStateChange: (event: YouTubePlayerEvent) => {
             if (!window.YT?.PlayerState) return;
             if (event.data === window.YT.PlayerState.PLAYING) {
               setIsPlaying(true);

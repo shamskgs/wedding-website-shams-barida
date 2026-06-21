@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { FloralDivider } from "./Ornaments";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface TimeLeft {
@@ -26,7 +25,6 @@ export default function WeddingCountdown() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
     const targetDate = new Date(weddingContent.countdown.targetDate).getTime();
 
     const calculateTimeLeft = () => {
@@ -61,18 +59,23 @@ export default function WeddingCountdown() {
     };
 
     // Initial run
-    const completed = calculateTimeLeft();
-    if (completed) return;
+    const initialTimer = window.setTimeout(() => {
+      setIsMounted(true);
+      calculateTimeLeft();
+    }, 0);
 
     // Start tick interval
-    const timer = setInterval(() => {
+    const timer = window.setInterval(() => {
       const done = calculateTimeLeft();
       if (done) {
         clearInterval(timer);
       }
     }, 1000);
 
-    return () => clearInterval(timer);
+    return () => {
+      window.clearTimeout(initialTimer);
+      window.clearInterval(timer);
+    };
   }, []);
 
   const formatNumber = (numStr: string) => {

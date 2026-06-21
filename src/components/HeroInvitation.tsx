@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 import { motion } from "framer-motion";
-import { ExternalLink, Calendar, MapPin } from "lucide-react";
+import { ArrowDown, Calendar, ExternalLink } from "lucide-react";
 
 interface HeroInvitationProps {
   onOpenDetails: () => void;
@@ -14,160 +13,88 @@ interface HeroInvitationProps {
 export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
   const { language, t } = useLanguage();
   const content = weddingContent.hero;
-  const profiles = weddingContent.profiles;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.25,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1.0, ease: "easeOut" as const },
-    },
-  };
 
   const handleUploadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const driveLink = weddingContent.upload.googleDriveLink;
-    if (driveLink.includes("[PASTE")) {
+    if (weddingContent.upload.googleDriveLink.includes("[PASTE")) {
       e.preventDefault();
       alert(t(weddingContent.upload.fallbackMessage));
     }
   };
 
+  const item = {
+    hidden: { opacity: 0, y: 14 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.05, ease: [0.22, 1, 0.36, 1] as const } },
+  };
+
   return (
-    <section
-      id="home"
-      className="editorial-section editorial-section--cream editorial-section--hero relative flex items-center overflow-hidden px-4 md:px-6"
-    >
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(27,23,20,0.04),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(181,139,78,0.07),transparent_34%)]" />
+    <section id="home" className="hero-cover">
+      <motion.div
+        className="hero-frame"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.4 }}
+        aria-hidden="true"
+      />
+      <div className="hero-botanical hero-botanical--left" aria-hidden="true" />
+      <div className="hero-botanical hero-botanical--right" aria-hidden="true" />
+      <span className="hero-rose hero-rose--one" aria-hidden="true" />
+      <span className="hero-rose hero-rose--two" aria-hidden="true" />
 
       <motion.div
-        variants={containerVariants}
+        className="hero-content"
         initial="hidden"
         animate="visible"
-        className="editorial-shell grid w-full items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 z-10"
+        transition={{ staggerChildren: 0.28, delayChildren: 0.45 }}
       >
-        <div className="order-2 lg:order-1">
-          <motion.div variants={itemVariants} className="mb-6">
-            <div className="editorial-label mb-5">{t(content.familyNotice)}</div>
-            <div className="max-w-[34rem]">
-              <h1
-                className={`editorial-heading ${
-                  language === "bn"
-                    ? "font-bengali-serif text-[clamp(3rem,7vw,5.6rem)] font-semibold"
-                    : ""
-                }`}
-              >
-                {t(content.groomName)}
-              </h1>
-              <div className="my-4 h-px w-20 bg-[rgba(27,23,20,0.2)]" />
-              <h1
-                className={`editorial-heading ${
-                  language === "bn"
-                    ? "font-bengali-serif text-[clamp(3rem,7vw,5.6rem)] font-semibold"
-                    : ""
-                }`}
-              >
-                {t(content.brideName)}
-              </h1>
-            </div>
-          </motion.div>
+        <motion.p variants={item} className="hero-kicker">
+          {t(content.familyNotice)}
+        </motion.p>
 
-          <motion.p
-            variants={itemVariants}
-            className={`editorial-copy mb-8 max-w-[34rem] ${
-              language === "bn" ? "font-bengali-sans" : ""
-            }`}
-          >
-            {t(content.inviteText)}
-          </motion.p>
-
-          <motion.div variants={itemVariants} className="mb-8 space-y-4">
-            <div className="editorial-rule" />
-            <div className="grid gap-4 text-sm uppercase tracking-[0.22em] text-[rgba(27,23,20,0.72)] sm:grid-cols-2">
-              <div className="flex items-center gap-2">
-                <Calendar size={15} className="text-gold" />
-                <span>{t(content.date)}</span>
-                <span className="text-[rgba(27,23,20,0.38)]">·</span>
-                <span>{t(content.time)}</span>
-              </div>
-              <div className="flex items-center gap-2 sm:justify-end">
-                <MapPin size={15} className="text-gold" />
-                <span>{t(content.venue)}</span>
-                <span className="text-[rgba(27,23,20,0.38)]">·</span>
-                <span>{t(content.location)}</span>
-              </div>
-            </div>
-            <div className="editorial-rule" />
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col gap-3 sm:flex-row sm:items-center"
-          >
-            <button
-              onClick={onOpenDetails}
-              className="editorial-button editorial-button--filled w-full sm:w-auto"
-            >
-              {t(content.viewDetailsCTA)}
-            </button>
-            <a
-              href={weddingContent.upload.googleDriveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleUploadClick}
-              className="editorial-button editorial-button--ghost w-full sm:w-auto gap-2"
-            >
-              {t(content.uploadMemoriesCTA)}
-              <ExternalLink size={12} />
-            </a>
-          </motion.div>
-        </div>
-
-        <motion.div variants={itemVariants} className="order-1 lg:order-2">
-          <div className="relative mx-auto w-full max-w-[42rem] lg:max-w-none">
-            <div className="grid grid-cols-12 gap-4 md:gap-5">
-              <div className="col-span-8 md:col-span-7 lg:col-span-8">
-                <div className="editorial-image-frame aspect-[4/5]">
-                  <Image
-                    src={profiles?.groom?.image ?? "/images/groom-placeholder.jpg"}
-                    alt={t(content.groomName)}
-                    fill
-                    sizes="(max-width: 768px) 70vw, 40vw"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </div>
-              <div className="col-span-4 md:col-span-5 lg:col-span-4 self-end">
-                <div className="editorial-image-frame aspect-[3/4] translate-y-6 md:translate-y-10">
-                  <Image
-                    src={profiles?.bride?.image ?? "/images/bride-placeholder.jpg"}
-                    alt={t(content.brideName)}
-                    fill
-                    sizes="(max-width: 768px) 28vw, 22vw"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="mt-4 flex items-center justify-between text-[10px] uppercase tracking-[0.28em] text-[rgba(27,23,20,0.55)]">
-              <span>{t(content.date)}</span>
-              <span className="hidden sm:inline">Scroll</span>
-            </div>
-          </div>
+        <motion.div variants={item} className="hero-names">
+          <h1 className={language === "bn" ? "font-bengali-serif font-semibold" : ""}>
+            <span>{t(content.groomName)}</span>
+            <b aria-hidden="true">{content.ampersand}</b>
+            <span>{t(content.brideName)}</span>
+          </h1>
         </motion.div>
+
+        <motion.p variants={item} className="hero-invitation">
+          {t(content.inviteText)}
+        </motion.p>
+
+        <motion.div variants={item} className="hero-date-block">
+          <span className="hero-rule" aria-hidden="true" />
+          <p>{t(content.date)}</p>
+          <span aria-hidden="true">·</span>
+          <p>{t(content.time)}</p>
+          <span className="hero-rule" aria-hidden="true" />
+        </motion.div>
+
+        <motion.p variants={item} className="hero-venue">
+          {t(content.venue)} <span>—</span> {t(content.location)}
+        </motion.p>
+
+        <motion.div variants={item} className="hero-actions">
+          <button onClick={onOpenDetails} className="editorial-button editorial-button--filled">
+            <Calendar size={14} aria-hidden="true" />
+            {t(content.viewDetailsCTA)}
+          </button>
+          <a
+            href={weddingContent.upload.googleDriveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleUploadClick}
+            className="editorial-button editorial-button--ghost"
+          >
+            {t(content.uploadMemoriesCTA)}
+            <ExternalLink size={13} aria-hidden="true" />
+          </a>
+        </motion.div>
+
+        <motion.a variants={item} href="#couple" className="hero-scroll" aria-label="Scroll to meet the couple">
+          <span>{language === "bn" ? "নিচে দেখুন" : "Discover our story"}</span>
+          <ArrowDown size={15} aria-hidden="true" />
+        </motion.a>
       </motion.div>
     </section>
   );

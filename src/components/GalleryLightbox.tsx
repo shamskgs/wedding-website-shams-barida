@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -52,23 +52,18 @@ export default function GalleryLightbox({
   }, [isOpen, onClose, handleNext, handlePrev]);
 
   // Touch Swipe handlers
-  let touchStartX = 0;
-  let touchEndX = 0;
+  const touchStartX = useRef(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartX.current = e.changedTouches[0].screenX;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
+    const touchEndX = e.changedTouches[0].screenX;
     const swipeThreshold = 50;
-    if (touchStartX - touchEndX > swipeThreshold) {
+    if (touchStartX.current - touchEndX > swipeThreshold) {
       handleNext(); // Swipe Left -> Next
-    } else if (touchEndX - touchStartX > swipeThreshold) {
+    } else if (touchEndX - touchStartX.current > swipeThreshold) {
       handlePrev(); // Swipe Right -> Prev
     }
   };

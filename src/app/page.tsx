@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { MotionConfig } from "framer-motion";
 import { LanguageProvider } from "@/components/LanguageContext";
 import { AudioProvider } from "@/components/AudioContext";
 import WeddingNavbar from "@/components/WeddingNavbar";
@@ -8,6 +9,7 @@ import HeroInvitation from "@/components/HeroInvitation";
 import WeddingCountdown from "@/components/WeddingCountdown";
 import CoupleProfiles from "@/components/CoupleProfiles";
 import ProgramSection from "@/components/ProgramSection";
+import InvitationCardsSection from "@/components/InvitationCardsSection";
 import EventDetailsModal from "@/components/EventDetailsModal";
 import MemoryUploadSection from "@/components/MemoryUploadSection";
 import GuestGallery from "@/components/GuestGallery";
@@ -22,6 +24,7 @@ export default function Home() {
   return (
     <LanguageProvider>
       <AudioProvider>
+        <MotionConfig reducedMotion="user">
         <div className="relative flex min-h-screen flex-col overflow-hidden editorial-story">
           {/* Global Navigation Bar */}
           <WeddingNavbar />
@@ -35,6 +38,7 @@ export default function Home() {
               onOpenDetails={() => setModalOpen(true)} 
               viewDetailsButtonRef={detailsButtonRef}
             />
+            <InvitationCardsSection />
             <MemoryUploadSection />
             <GuestGallery />
             <FamilyMessage />
@@ -51,6 +55,7 @@ export default function Home() {
             triggerRef={detailsButtonRef}
           />
         </div>
+        </MotionConfig>
       </AudioProvider>
     </LanguageProvider>
   );

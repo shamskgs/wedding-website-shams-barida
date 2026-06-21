@@ -27,6 +27,7 @@ export default function EventDetailsModal({
 
     // Save previous active element to restore focus on close
     const previousActiveElement = document.activeElement as HTMLElement;
+    const triggerElement = triggerRef.current;
 
     // Disable body scroll
     document.body.style.overflow = "hidden";
@@ -77,11 +78,10 @@ export default function EventDetailsModal({
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
       // Restore focus
-      if (previousActiveElement && typeof previousActiveElement.focus === "function") {
-        previousActiveElement.focus();
-      }
+      const focusTarget = triggerElement ?? previousActiveElement;
+      focusTarget?.focus();
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, triggerRef]);
 
   // Click outside to close
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -125,10 +125,10 @@ export default function EventDetailsModal({
               </span>
               <h2
                 id="modal-title"
-                className={`text-peacock leading-none ${
+                className={`font-display text-crimson leading-none ${
                   language === "bn"
                     ? "font-bengali-serif text-2xl font-bold"
-                    : "font-calligraphy text-2xl font-normal"
+                    : "text-4xl font-semibold"
                 }`}
               >
                 {t(content.title)}
@@ -173,7 +173,7 @@ export default function EventDetailsModal({
                   <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
                     {language === "bn" ? "স্থান ও ঠিকানা" : "Venue & Address"}
                   </h4>
-                  <p className="font-semibold text-peacock">{t(content.venueName)}</p>
+                  <p className="font-display text-xl font-semibold uppercase tracking-[0.08em] text-wine">{t(content.venueName)}</p>
                   <p className="text-xs text-charcoal/60 mt-1 leading-relaxed">{t(content.address)}</p>
                 </div>
               </div>

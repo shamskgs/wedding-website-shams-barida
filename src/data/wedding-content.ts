@@ -251,9 +251,9 @@ export const weddingContent = {
         relation: { en: "Groom's Family Representative", bn: "বরের পক্ষ থেকে" }
       },
       {
-        name: "Talha",
-        phone: "01715537406",
-        whatsapp: "+8801715537406",
+        name: "Sabbir",
+        phone: "01818223909",
+        whatsapp: "+8801818223909",
         relation: { en: "Bride's Family Representative", bn: "কনের পক্ষ থেকে" }
       }
     ] as ContactPerson[]

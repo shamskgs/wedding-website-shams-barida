@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface Blob {
   x: number;
@@ -14,8 +14,6 @@ interface Blob {
 
 export default function AbstractWeddingBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -25,13 +23,6 @@ export default function AbstractWeddingBackground() {
 
     // Check system preferences for reduced motion
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
-
-    const handleMotionChange = (e: MediaQueryListEvent) => {
-      setReducedMotion(e.matches);
-    };
-    mediaQuery.addEventListener("change", handleMotionChange);
-
     let animationFrameId: number;
     let width = (canvas.width = canvas.offsetWidth);
     let height = (canvas.height = canvas.offsetHeight);
@@ -169,7 +160,6 @@ export default function AbstractWeddingBackground() {
     return () => {
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationFrameId);
-      mediaQuery.removeEventListener("change", handleMotionChange);
     };
   }, []);
 

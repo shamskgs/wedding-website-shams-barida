@@ -1,34 +1,5 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Poppins, Noto_Serif_Bengali, Hind_Siliguri } from "next/font/google";
 import "./globals.css";
-
-const greatVibes = Great_Vibes({
-  weight: "400",
-  variable: "--font-calligraphy",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const notoSerifBengali = Noto_Serif_Bengali({
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-bengali-serif",
-  subsets: ["bengali"],
-  display: "swap",
-});
-
-const hindSiliguri = Hind_Siliguri({
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-bengali-sans",
-  subsets: ["bengali"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shams-weds-barida.vercel.app"),
@@ -64,11 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${greatVibes.variable} ${poppins.variable} ${notoSerifBengali.variable} ${hindSiliguri.variable} h-full antialiased`}
-    >
-      <body className="min-h-full bg-ivory text-charcoal flex flex-col font-poppins selection:bg-peacock selection:text-ivory">
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full bg-ivory text-charcoal flex flex-col font-poppins">
         {children}
       </body>
     </html>

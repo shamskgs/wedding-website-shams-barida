@@ -3,7 +3,7 @@
 import React from "react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { Calendar, Clock, MapPin, ExternalLink } from "lucide-react";
+import { Calendar, Clock, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface ProgramSectionProps {
@@ -73,9 +73,10 @@ export default function ProgramSection({
                 <h3 className="font-poppins text-[10px] uppercase tracking-[0.28em] text-[rgba(27,23,20,0.55)]">
                   {language === "bn" ? "স্থান" : "Venue"}
                 </h3>
-                <p className="mt-3 font-calligraphy text-[clamp(2.1rem,4vw,3.4rem)] leading-[0.95] text-peacock">
+                <p className="venue-name mt-3">
                   {t(content.venueName)}
                 </p>
+                <div className="mt-5 h-px w-20 bg-gold" aria-hidden="true" />
               </div>
               <div>
                 <p className="editorial-copy">{t(content.address)}</p>
