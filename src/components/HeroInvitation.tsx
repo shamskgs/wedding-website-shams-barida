@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { motion } from "framer-motion";
-import { ArrowDown, Calendar, ExternalLink } from "lucide-react";
 
 interface HeroInvitationProps {
   onOpenDetails: () => void;
@@ -12,86 +12,70 @@ interface HeroInvitationProps {
 
 export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
   const { language, t } = useLanguage();
-  const content = weddingContent.hero;
+  const heroRef = useRef<HTMLElement>(null);
+  const content = weddingContent;
+  const isBengali = language === "bn";
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -24]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.72]);
 
-  const handleUploadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (weddingContent.upload.googleDriveLink.includes("[PASTE")) {
-      e.preventDefault();
-      alert(t(weddingContent.upload.fallbackMessage));
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 14 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.05, ease: [0.22, 1, 0.36, 1] as const } },
+  const reveal = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] as const },
+    },
   };
 
   return (
-    <section id="home" className="hero-cover">
-      <motion.div
-        className="hero-frame"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.4 }}
-        aria-hidden="true"
-      />
-      <div className="hero-botanical hero-botanical--left" aria-hidden="true" />
-      <div className="hero-botanical hero-botanical--right" aria-hidden="true" />
+    <section ref={heroRef} id="home" className="hero-cover">
+      <span className="hero-edge-line hero-edge-line--left" aria-hidden="true" />
+      <span className="hero-edge-line hero-edge-line--right" aria-hidden="true" />
 
       <motion.div
         className="hero-content"
+        style={{ y: heroY, opacity: heroOpacity }}
         initial="hidden"
         animate="visible"
-        transition={{ staggerChildren: 0.28, delayChildren: 0.45 }}
+        transition={{ staggerChildren: 0.16, delayChildren: 0.16 }}
       >
-        <motion.p variants={item} className="hero-kicker">
-          {t(content.familyNotice)}
+        <motion.p variants={reveal} className="hero-label">
+          {isBengali ? "আপনি সাদর আমন্ত্রিত" : "You are cordially invited"}
         </motion.p>
 
-        <motion.div variants={item} className="hero-names">
-          <h1 className={language === "bn" ? "font-bengali-serif font-semibold" : ""}>
-            <span>{t(content.groomName)}</span>
-            <b aria-hidden="true">{content.ampersand}</b>
-            <span>{t(content.brideName)}</span>
-          </h1>
-        </motion.div>
+        <h1 className={`hero-names ${isBengali ? "font-bengali-serif" : ""}`}>
+          <span className="hero-name-mask">
+            <motion.span variants={reveal} className="hero-name">{isBengali ? "শামস" : "Shams"}</motion.span>
+          </span>
+          <motion.span variants={reveal} className="hero-ampersand" aria-hidden="true">&amp;</motion.span>
+          <span className="hero-name-mask">
+            <motion.span variants={reveal} className="hero-name">{isBengali ? "বারিদা" : "Barida"}</motion.span>
+          </span>
+        </h1>
 
-        <motion.p variants={item} className="hero-invitation">
-          {t(content.inviteText)}
-        </motion.p>
-
-        <motion.div variants={item} className="hero-date-block">
+        <motion.div variants={reveal} className="hero-date">
           <span className="hero-rule" aria-hidden="true" />
-          <p>{t(content.date)}</p>
-          <span aria-hidden="true">·</span>
-          <p>{t(content.time)}</p>
+          <p>{isBengali ? t(content.hero.date) : "11 · July · 2026"}</p>
           <span className="hero-rule" aria-hidden="true" />
         </motion.div>
 
-        <motion.p variants={item} className="hero-venue">
-          {t(content.venue)} <span>—</span> {t(content.location)}
-        </motion.p>
-
-        <motion.div variants={item} className="hero-actions">
-          <button onClick={onOpenDetails} className="editorial-button editorial-button--filled">
-            <Calendar size={14} aria-hidden="true" />
-            {t(content.viewDetailsCTA)}
-          </button>
-          <a
-            href={weddingContent.upload.googleDriveLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleUploadClick}
-            className="editorial-button editorial-button--ghost"
-          >
-            {t(content.uploadMemoriesCTA)}
-            <ExternalLink size={13} aria-hidden="true" />
-          </a>
+        <motion.div variants={reveal} className="hero-program">
+          <p>{t(content.program.title)}</p>
+          <p>{t(content.program.timeLabel)}</p>
         </motion.div>
 
-        <motion.a variants={item} href="#couple" className="hero-scroll" aria-label="Scroll to meet the couple">
-          <span>{language === "bn" ? "নিচে দেখুন" : "Discover our story"}</span>
-          <ArrowDown size={15} aria-hidden="true" />
+        <motion.button
+          variants={reveal}
+          onClick={onOpenDetails}
+          className="editorial-button editorial-button--filled hero-cta"
+        >
+          {isBengali ? "অনুষ্ঠান দেখুন" : "View the Program"}
+        </motion.button>
+
+        <motion.a variants={reveal} href="#couple" className="hero-scroll-cue" aria-label="Scroll to the next section">
+          <span>{isBengali ? "নিচে দেখুন" : "Scroll"}</span>
+          <ArrowDown size={14} aria-hidden="true" />
         </motion.a>
       </motion.div>
     </section>
