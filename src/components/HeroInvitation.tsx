@@ -37,8 +37,6 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
       />
       <div className="hero-botanical hero-botanical--left" aria-hidden="true" />
       <div className="hero-botanical hero-botanical--right" aria-hidden="true" />
-      <span className="hero-rose hero-rose--one" aria-hidden="true" />
-      <span className="hero-rose hero-rose--two" aria-hidden="true" />
 
       <motion.div
         className="hero-content"

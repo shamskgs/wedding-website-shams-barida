@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1697" viewBox="0 0 1200 1697" role="img" aria-labelledby="title desc">
+  <title id="title">Groom’s Invitation placeholder</title>
+  <desc id="desc">Minimal cream wedding invitation placeholder for Shams and Barida.</desc>
+  <rect width="1200" height="1697" fill="#EEE4D6"/>
+  <rect x="62" y="62" width="1076" height="1573" fill="none" stroke="#702532" stroke-width="2"/>
+  <rect x="78" y="78" width="1044" height="1541" fill="none" stroke="#AD9363" stroke-width="1" opacity=".7"/>
+  <g fill="none" stroke="#702532" stroke-width="2" opacity=".38">
+    <path d="M180 1435c15-109 58-196 132-266M205 1362c-36 3-57 27-57 61 36-2 58-26 57-61ZM250 1297c35-10 64 4 78 35-34 11-63-2-78-35Z"/>
+    <path d="M1020 262c-15 109-58 196-132 266M995 335c36-3 57-27 57-61-36 2-58 26-57 61ZM950 400c-35 10-64-4-78-35 34-11 63 2 78 35Z"/>
+  </g>
+  <text x="600" y="620" text-anchor="middle" fill="#702532" font-family="Georgia, 'Times New Roman', serif" font-size="32" letter-spacing="8">GROOM’S INVITATION</text>
+  <line x1="460" y1="680" x2="740" y2="680" stroke="#AD9363" stroke-width="2"/>
+  <text x="600" y="835" text-anchor="middle" fill="#201C19" font-family="Georgia, 'Times New Roman', serif" font-size="104">Shams &amp; Barida</text>
+  <text x="600" y="950" text-anchor="middle" fill="#6F675F" font-family="Arial, sans-serif" font-size="28" letter-spacing="7">11 JULY 2026</text>
+  <line x1="570" y1="1050" x2="630" y2="1050" stroke="#AD9363" stroke-width="2"/>
+</svg>

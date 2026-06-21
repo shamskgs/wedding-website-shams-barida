@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1697" viewBox="0 0 1200 1697" role="img" aria-labelledby="title desc">
+  <title id="title">Bride’s Invitation placeholder</title>
+  <desc id="desc">Minimal ivory wedding invitation placeholder for Shams and Barida.</desc>
+  <rect width="1200" height="1697" fill="#F7F2E9"/>
+  <rect x="62" y="62" width="1076" height="1573" fill="none" stroke="#AD9363" stroke-width="2"/>
+  <path d="M62 216V62h154M1138 216V62H984M62 1481v154h154M1138 1481v154H984" fill="none" stroke="#702532" stroke-width="4"/>
+  <g fill="none" stroke="#AD9363" stroke-width="2" opacity=".62">
+    <path d="M165 250c76 36 112 98 124 181M205 287c-35-3-57 18-61 52 35 4 58-17 61-52ZM244 337c35-8 63 8 75 40-34 9-62-6-75-40Z"/>
+    <path d="M1035 1447c-76-36-112-98-124-181M995 1410c35 3 57-18 61-52-35-4-58 17-61 52ZM956 1360c-35 8-63-8-75-40 34-9 62 6 75 40Z"/>
+  </g>
+  <text x="600" y="620" text-anchor="middle" fill="#702532" font-family="Georgia, 'Times New Roman', serif" font-size="32" letter-spacing="8">BRIDE’S INVITATION</text>
+  <line x1="460" y1="680" x2="740" y2="680" stroke="#AD9363" stroke-width="2"/>
+  <text x="600" y="835" text-anchor="middle" fill="#201C19" font-family="Georgia, 'Times New Roman', serif" font-size="104">Shams &amp; Barida</text>
+  <text x="600" y="950" text-anchor="middle" fill="#6F675F" font-family="Arial, sans-serif" font-size="28" letter-spacing="7">11 JULY 2026</text>
+  <circle cx="600" cy="1050" r="5" fill="#AD9363"/>
+</svg>
