@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="960" viewBox="0 0 720 960" role="img" aria-labelledby="t d">
+  <title id="t">Demo 02 Groom editorial portrait placeholder</title><desc id="d">Replaceable portrait image slot.</desc>
+  <rect width="720" height="960" fill="#343B2E"/><rect x="46" y="46" width="628" height="868" fill="none" stroke="#A78D5F"/><circle cx="360" cy="330" r="122" fill="#B5A27C"/><path d="M155 960c24-264 105-410 205-410s181 146 205 410H155Z" fill="#252C23"/>
+  <text x="70" y="94" fill="#EEE5D3" font-family="Arial,sans-serif" font-size="24" letter-spacing="6">DEMO 02</text><text x="70" y="860" fill="#EEE5D3" font-family="Georgia,serif" font-size="54">Groom portrait</text>
+</svg>

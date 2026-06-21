@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-labelledby="t d">
+  <title id="t">Demo 04 Flowers placeholder</title><desc id="d">Replaceable square bouquet image slot.</desc>
+  <rect width="800" height="800" fill="#B5A27C"/><g fill="none" stroke="#343B2E" stroke-width="8"><path d="M405 710c-5-213-44-390-156-535M405 710c42-220 104-360 213-480"/><ellipse cx="258" cy="258" rx="82" ry="134" transform="rotate(-45 258 258)"/><ellipse cx="535" cy="304" rx="86" ry="140" transform="rotate(42 535 304)"/><circle cx="401" cy="205" r="76"/></g>
+  <text x="42" y="66" fill="#252C23" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">DEMO 04 · FLOWERS</text>
+</svg>

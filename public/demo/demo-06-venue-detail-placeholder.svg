@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="680" viewBox="0 0 900 680" role="img" aria-labelledby="t d">
+  <title id="t">Demo 06 Venue detail placeholder</title><desc id="d">Replaceable landscape venue architecture image slot.</desc>
+  <rect width="900" height="680" fill="#747C68"/><path d="M104 590V252h692v338M208 590V335h484v255M320 590V430c0-74 58-134 130-134s130 60 130 134v160" fill="none" stroke="#EEE5D3" stroke-width="15"/><path d="M70 252h760L450 80 70 252Z" fill="#343B2E"/>
+  <text x="48" y="642" fill="#F6F0E5" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">DEMO 06 · VENUE DETAIL</text>
+</svg>
