@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, MapPin } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 
@@ -11,161 +10,175 @@ interface HeroInvitationProps {
   onOpenDetails: () => void;
 }
 
-const demoImages = [
-  { id: 1, src: "/demo/demo-01-bride.jpg", fallback: "/demo/demo-01-bride-placeholder.svg", alt: "Bride editorial portrait demo image", depth: 0.7 },
-  { id: 2, src: "/demo/demo-02-groom.jpg", fallback: "/demo/demo-02-groom-placeholder.svg", alt: "Groom editorial portrait demo image", depth: 0.9 },
-  { id: 3, src: "/demo/demo-03-couple-detail.jpg", fallback: "/demo/demo-03-couple-detail-placeholder.svg", alt: "Couple detail demo image", depth: 0.55 },
-  { id: 4, src: "/demo/demo-04-flowers.jpg", fallback: "/demo/demo-04-flowers-placeholder.svg", alt: "Wedding flowers demo image", depth: 0.8 },
-  { id: 5, src: "/demo/demo-05-wedding-detail.jpg", fallback: "/demo/demo-05-wedding-detail-placeholder.svg", alt: "Wedding detail demo image", depth: 0.45 },
-  { id: 6, src: "/demo/demo-06-venue-detail.jpg", fallback: "/demo/demo-06-venue-detail-placeholder.svg", alt: "Venue architecture demo image", depth: 0.65 },
-];
-
-function FloatingImage({ image, index }: { image: (typeof demoImages)[number]; index: number }) {
-  const [src, setSrc] = useState(image.src);
-
-  return (
-    <motion.figure
-      className={`hero-floating-image hero-floating-image--${image.id}`}
-      initial={{ opacity: 0, y: 18, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.9, delay: 0.72 + index * 0.09, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <div className="hero-image-drift">
-        <div className="hero-image-parallax" data-parallax-depth={image.depth}>
-          <Image
-            src={src}
-            alt={image.alt}
-            fill
-            sizes="(max-width: 767px) 28vw, (max-width: 1100px) 18vw, 14vw"
-            className="object-cover"
-            priority={image.id <= 2}
-            onError={() => setSrc(image.fallback)}
-          />
-        </div>
-      </div>
-    </motion.figure>
-  );
-}
+const reveal = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] as const } },
+};
 
 export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
   const { language, t } = useLanguage();
-  const heroRef = useRef<HTMLElement>(null);
-  const isBengali = language === "bn";
   const content = weddingContent;
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero || window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const layers = Array.from(hero.querySelectorAll<HTMLElement>("[data-parallax-depth]"));
-    let pointerX = 0;
-    let pointerY = 0;
-    let animationId: number | null = null;
-
-    const render = () => {
-      animationId = null;
-      const scrollDrift = Math.max(-12, Math.min(12, window.scrollY * 0.018));
-      layers.forEach((layer) => {
-        const depth = Number(layer.dataset.parallaxDepth ?? 0.5);
-        layer.style.transform = `translate3d(${pointerX * depth}px, ${pointerY * depth + scrollDrift * depth}px, 0)`;
-      });
-    };
-
-    const requestRender = () => {
-      if (animationId === null) animationId = window.requestAnimationFrame(render);
-    };
-
-    const handlePointer = (event: PointerEvent) => {
-      const rect = hero.getBoundingClientRect();
-      pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 20;
-      pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 14;
-      requestRender();
-    };
-
-    const resetPointer = () => {
-      pointerX = 0;
-      pointerY = 0;
-      requestRender();
-    };
-
-    hero.addEventListener("pointermove", handlePointer, { passive: true });
-    hero.addEventListener("pointerleave", resetPointer);
-    window.addEventListener("scroll", requestRender, { passive: true });
-
-    return () => {
-      hero.removeEventListener("pointermove", handlePointer);
-      hero.removeEventListener("pointerleave", resetPointer);
-      window.removeEventListener("scroll", requestRender);
-      if (animationId !== null) window.cancelAnimationFrame(animationId);
-    };
-  }, []);
-
-  const reveal = {
-    hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.82, ease: [0.22, 1, 0.36, 1] as const } },
-  };
+  const isBengali = language === "bn";
 
   return (
-    <section ref={heroRef} id="home" className="fluid-hero">
+    <section id="home" className="rg-hero">
+      <div className="rg-hero__grain" aria-hidden="true" />
+
       <motion.a
         href="#home"
-        className="fluid-hero-mark"
+        className="rg-hero__brand"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.25 }}
+        transition={{ duration: 0.75, delay: 0.15 }}
       >
         S <span>&amp;</span> B
       </motion.a>
 
-      <div className="fluid-hero-images" aria-label="Replaceable wedding editorial demo images">
-        {demoImages.map((image, index) => <FloatingImage key={image.id} image={image} index={index} />)}
+      <div className="rg-hero__layout">
+        <motion.div
+          className="rg-hero__date"
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.75, delay: 0.2 }}
+        >
+          {t(content.hero.date)}
+        </motion.div>
+
+        <motion.div
+          className="rg-hero__flower rg-hero__flower--top"
+          initial={{ opacity: 0, scale: 0.96, rotate: -6 }}
+          animate={{ opacity: 1, scale: 1, rotate: -6 }}
+          transition={{ duration: 0.9, delay: 0.32 }}
+          aria-hidden="true"
+        />
+
+        <motion.figure
+          className="rg-hero__top-photo"
+          initial={{ opacity: 0, y: -18, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Image
+            src={content.seo.previewImage}
+            alt={content.seo.title.en}
+            fill
+            sizes="(max-width: 767px) 82vw, 42vw"
+            className="object-cover"
+            priority
+          />
+        </motion.figure>
+
+        <motion.div
+          className="rg-invitation"
+          initial="hidden"
+          animate="visible"
+          transition={{ staggerChildren: 0.12, delayChildren: 0.32 }}
+        >
+          <motion.p variants={reveal} className="rg-invitation__kicker">
+            {t(content.hero.familyNotice)}
+          </motion.p>
+
+          <h1 className={`rg-invitation__names ${isBengali ? "font-bengali-serif" : ""}`}>
+            <motion.span variants={reveal}>{t(content.hero.groomName)}</motion.span>
+            <motion.i variants={reveal} aria-hidden="true">
+              {content.hero.ampersand}
+            </motion.i>
+            <motion.span variants={reveal}>{t(content.hero.brideName)}</motion.span>
+          </h1>
+
+          <motion.p variants={reveal} className="rg-invitation__copy">
+            {t(content.hero.inviteText)}
+          </motion.p>
+
+          <motion.div variants={reveal} className="rg-invitation__actions">
+            <button onClick={onOpenDetails} className="editorial-button editorial-button--filled">
+              {t(content.hero.viewDetailsCTA)}
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </button>
+            <a href="#memories" className="editorial-button editorial-button--ghost">
+              {t(content.hero.uploadMemoriesCTA)}
+            </a>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="rg-hero__flower rg-hero__flower--middle"
+          initial={{ opacity: 0, scale: 0.92, rotate: 12 }}
+          animate={{ opacity: 1, scale: 1, rotate: 12 }}
+          transition={{ duration: 0.9, delay: 0.52 }}
+          aria-hidden="true"
+        />
+
+        <div className="rg-hero__gallery" aria-label="Wedding portraits">
+          <motion.figure
+            className="rg-hero__portrait"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={content.profiles.groom.image}
+              alt={t(content.profiles.groom.name)}
+              fill
+              sizes="(max-width: 767px) 30vw, 22vw"
+              className="object-cover"
+              priority
+            />
+          </motion.figure>
+
+          <motion.figure
+            className="rg-hero__portrait rg-hero__portrait--center"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.66, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={content.seo.previewImage}
+              alt={content.seo.title.en}
+              fill
+              sizes="(max-width: 767px) 30vw, 22vw"
+              className="object-cover"
+              priority
+            />
+          </motion.figure>
+
+          <motion.figure
+            className="rg-hero__portrait"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.76, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={content.profiles.bride.image}
+              alt={t(content.profiles.bride.name)}
+              fill
+              sizes="(max-width: 767px) 30vw, 22vw"
+              className="object-cover"
+              priority
+            />
+          </motion.figure>
+        </div>
+
+        <motion.figure
+          className="rg-hero__venue"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, delay: 0.88 }}
+        >
+          <figcaption>{t(content.program.venueName)}</figcaption>
+          <p>
+            <MapPin size={14} aria-hidden="true" />
+            {t(content.program.address)}
+          </p>
+        </motion.figure>
       </div>
-
-      <motion.div
-        className="fluid-hero-copy"
-        initial="hidden"
-        animate="visible"
-        transition={{ staggerChildren: 0.14, delayChildren: 0.32 }}
-      >
-        <motion.p variants={reveal} className="fluid-hero-eyebrow">{t(content.hero.familyNotice)}</motion.p>
-        <h1 className={isBengali ? "font-bengali-serif" : ""}>
-          <span className="fluid-name-mask"><motion.span variants={reveal}>{t(content.hero.groomName)}</motion.span></span>
-          <motion.i variants={reveal} aria-hidden="true">&amp;</motion.i>
-          <span className="fluid-name-mask"><motion.span variants={reveal}>{t(content.hero.brideName)}</motion.span></span>
-        </h1>
-        <motion.p variants={reveal} className="fluid-hero-invitation">{t(content.hero.inviteText)}</motion.p>
-      </motion.div>
-
-      <motion.div
-        className="fluid-hero-details"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.85, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <p>{t(content.hero.date)}</p>
-        <span />
-        <p>{t(content.program.title)}</p>
-        <p>{t(content.program.timeLabel)}</p>
-        <p>{t(content.program.venueName)}</p>
-      </motion.div>
-
-      <motion.button
-        onClick={onOpenDetails}
-        className="fluid-hero-action"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.18 }}
-      >
-        {isBengali ? "অনুষ্ঠান দেখুন" : "Explore the Program"}
-        <ArrowUpRight size={15} aria-hidden="true" />
-      </motion.button>
 
       <motion.a
         href="#couple"
-        className="fluid-scroll-cue"
+        className="rg-hero__scroll"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.35 }}
+        transition={{ duration: 0.75, delay: 1.05 }}
         aria-label="Scroll to the couple section"
       >
         <span>{isBengali ? "নিচে দেখুন" : "Scroll"}</span>
