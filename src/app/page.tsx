@@ -16,7 +16,7 @@ import GuestGallery from "@/components/GuestGallery";
 import FamilyMessage from "@/components/FamilyMessage";
 import ContactSection from "@/components/ContactSection";
 import WeddingFooter from "@/components/WeddingFooter";
-import BotanicalShadowBackground from "@/components/BotanicalShadowBackground";
+import GlitterBackground from "@/components/GlitterBackground";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,9 +26,9 @@ export default function Home() {
     <LanguageProvider>
       <AudioProvider>
         <MotionConfig reducedMotion="user">
-        <div className="relative min-h-screen editorial-story">
+        <div className="relative min-h-screen editorial-story dark-editorial">
           <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-            <BotanicalShadowBackground />
+            <GlitterBackground speed={0.28} intensity={1.6} />
           </div>
 
           <div className="relative z-10 flex min-h-screen flex-col overflow-x-clip">

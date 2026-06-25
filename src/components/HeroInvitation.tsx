@@ -158,9 +158,6 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
 
   return (
     <section ref={heroRef} id="home" className="editorial-hero">
-      <div className="hero-shadow hero-shadow--one" aria-hidden="true" />
-      <div className="hero-shadow hero-shadow--two" aria-hidden="true" />
-
       <motion.a
         href="#home"
         className="hero-mark"
@@ -184,7 +181,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         transition={{ staggerChildren: 0.12, delayChildren: 0.44 }}
       >
         <motion.p variants={reveal} className="hero-kicker">
-          {t(content.hero.familyNotice)}
+          {isBengali ? t(content.hero.familyNotice) : "You are cordially invited"}
         </motion.p>
         <h1 className={`hero-title ${isBengali ? "font-bengali-serif" : ""}`}>
           <span className="hero-title__line">
@@ -203,7 +200,7 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
       </motion.div>
 
       <motion.aside
-        className="hero-details"
+        className="hero-details liquid-glass"
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
