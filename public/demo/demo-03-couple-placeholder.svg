@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720" role="img" aria-labelledby="t d">
+  <title id="t">Demo 03 Couple portrait placeholder</title>
+  <desc id="d">Replaceable couple portrait image slot.</desc>
+  <rect width="960" height="720" fill="#EDE3CF"/>
+  <path d="M0 555c150-106 305-143 466-112 187 36 323 4 494-108v385H0Z" fill="#C8B58F"/>
+  <circle cx="383" cy="258" r="78" fill="#A99876"/>
+  <circle cx="550" cy="244" r="82" fill="#737B68"/>
+  <path d="M252 720c31-214 85-327 160-327 72 0 128 113 160 327H252Z" fill="#65444A" opacity=".82"/>
+  <path d="M440 720c33-226 90-345 170-345 76 0 136 119 170 345H440Z" fill="#30372B" opacity=".9"/>
+  <text x="48" y="74" fill="#30372B" font-family="Arial,sans-serif" font-size="24" letter-spacing="6">DEMO 03</text>
+  <text x="48" y="642" fill="#25241F" font-family="Georgia,serif" font-size="62">Couple portrait</text>
+</svg>

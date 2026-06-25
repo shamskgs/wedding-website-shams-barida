@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Download, Eye } from "lucide-react";
+import { Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLanguage } from "./LanguageContext";
@@ -10,20 +10,22 @@ const cards = [
   {
     title: "Bride’s Invitation Card",
     titleBn: "কনের নিমন্ত্রণপত্র",
-    realSrc: "/cards/brides-invitation-card.png",
+    realSrc: "/cards/brides-card-placeholder.svg",
     placeholderSrc: "/cards/brides-card-placeholder.svg",
-    download: "Shams-Barida-Brides-Invitation.png",
+    download: "Shams-Barida-Brides-Invitation.svg",
+    placeholderDownload: "Shams-Barida-Brides-Invitation-Placeholder.svg",
     downloadLabel: "Download Bride’s Card",
-    previewLabel: "Preview Bride’s Card",
+    previewLabel: "Download Bride’s Placeholder",
   },
   {
     title: "Groom’s Invitation Card",
     titleBn: "বরের নিমন্ত্রণপত্র",
-    realSrc: "/cards/grooms-invitation-card.png",
+    realSrc: "/cards/grooms-card-placeholder.svg",
     placeholderSrc: "/cards/grooms-card-placeholder.svg",
-    download: "Shams-Barida-Grooms-Invitation.png",
+    download: "Shams-Barida-Grooms-Invitation.svg",
+    placeholderDownload: "Shams-Barida-Grooms-Invitation-Placeholder.svg",
     downloadLabel: "Download Groom’s Card",
-    previewLabel: "Preview Groom’s Card",
+    previewLabel: "Download Groom’s Placeholder",
   },
 ];
 
@@ -53,17 +55,14 @@ function InvitationCard({ card, index, language }: { card: (typeof cards)[number
           onError={() => setUsesPlaceholder(true)}
         />
       </a>
-      {usesPlaceholder ? (
-        <a href={card.placeholderSrc} target="_blank" rel="noopener noreferrer" className="editorial-button editorial-button--ghost mt-6 w-full gap-2">
-          <Eye size={15} aria-hidden="true" />
-          {card.previewLabel}
-        </a>
-      ) : (
-        <a href={card.realSrc} download={card.download} className="editorial-button editorial-button--filled mt-6 w-full gap-2">
-          <Download size={15} aria-hidden="true" />
-          {card.downloadLabel}
-        </a>
-      )}
+      <a
+        href={src}
+        download={usesPlaceholder ? card.placeholderDownload : card.download}
+        className="editorial-button editorial-button--filled mt-6 w-full gap-2"
+      >
+        <Download size={15} aria-hidden="true" />
+        {usesPlaceholder ? card.previewLabel : card.downloadLabel}
+      </a>
     </motion.article>
   );
 }

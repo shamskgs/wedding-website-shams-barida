@@ -106,13 +106,13 @@ export default function EventDetailsModal({
             initial={{ opacity: 0, y: 100, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.95 }}
-            transition={{ type: "spring", damping: 28, stiffness: 260 }}
-            className="w-full sm:max-w-md bg-[var(--paper-soft)] border border-[rgba(27,23,20,0.12)] rounded-t-3xl sm:rounded-none sm:rounded-[1.5rem] p-8 relative flex flex-col max-h-[90vh] overflow-y-auto"
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full sm:max-w-md bg-[var(--soft-ivory)] border border-[rgba(37,36,31,0.16)] p-8 relative flex flex-col max-h-[90vh] overflow-y-auto"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full text-[rgba(27,23,20,0.55)] hover:text-peacock hover:bg-[rgba(27,23,20,0.04)] transition-colors focus:outline-none focus:ring-2 focus:ring-peacock/20"
+              className="absolute top-4 right-4 p-2 text-[rgba(37,36,31,0.55)] hover:text-peacock transition-colors focus:outline-none focus:ring-2 focus:ring-peacock/20"
               aria-label="Close details modal"
             >
               <X size={20} />
@@ -140,7 +140,7 @@ export default function EventDetailsModal({
             <div id="modal-description" className="space-y-6 text-charcoal/80 text-sm font-light tracking-wide">
               {/* Date */}
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-[rgba(27,23,20,0.04)] text-gold mt-0.5">
+                <div className="p-2 border border-[rgba(37,36,31,0.12)] text-gold mt-0.5">
                   <Calendar size={18} />
                 </div>
                 <div>
@@ -153,7 +153,7 @@ export default function EventDetailsModal({
 
               {/* Time */}
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-[rgba(27,23,20,0.04)] text-gold mt-0.5">
+                <div className="p-2 border border-[rgba(37,36,31,0.12)] text-gold mt-0.5">
                   <Clock size={18} />
                 </div>
                 <div>
@@ -166,7 +166,7 @@ export default function EventDetailsModal({
 
               {/* Venue */}
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-[rgba(27,23,20,0.04)] text-gold mt-0.5">
+                <div className="p-2 border border-[rgba(37,36,31,0.12)] text-gold mt-0.5">
                   <MapPin size={18} />
                 </div>
                 <div>

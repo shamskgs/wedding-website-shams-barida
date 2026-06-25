@@ -25,6 +25,13 @@ export default function WeddingNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "bn" : "en");
   };
@@ -94,7 +101,7 @@ export default function WeddingNavbar() {
             {/* Mobile Hamburger Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 text-peacock hover:text-gold transition-colors focus:outline-none"
+              className="md:hidden p-2 text-peacock hover:text-gold transition-colors focus:outline-none"
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -111,15 +118,15 @@ export default function WeddingNavbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden absolute top-full left-0 right-0 bg-[rgba(247,241,231,0.96)] border-b border-[rgba(27,23,20,0.08)] overflow-hidden"
+              className="md:hidden fixed inset-0 top-[4.25rem] bg-[rgba(246,240,229,0.96)] backdrop-blur-xl overflow-hidden"
             >
-              <div className="flex flex-col items-center py-6 gap-5 px-6">
+              <div className="flex min-h-full flex-col justify-center py-10 gap-6 px-6">
                 {navLinks.map((link) => (
                   <a
                     key={link.id}
                     href={`#${link.id}`}
                     onClick={(e) => handleScrollTo(e, link.id)}
-                    className="text-xs uppercase tracking-[0.22em] font-medium text-[rgba(27,23,20,0.84)] hover:text-peacock transition-colors py-2 w-full text-center border-b border-[rgba(27,23,20,0.06)]"
+                    className="text-3xl font-display text-peacock transition-colors hover:text-wine py-2 w-full text-center"
                   >
                     {t(link.label)}
                   </a>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900" role="img" aria-labelledby="t d">
+  <title id="t">Demo 05 Wedding detail placeholder</title>
+  <desc id="d">Replaceable wedding detail image slot.</desc>
+  <rect width="720" height="900" fill="#F6F0E5"/>
+  <rect x="72" y="118" width="576" height="664" fill="#EDE3CF" stroke="#9F895E" stroke-width="2"/>
+  <path d="M188 644c77-219 154-370 232-453M248 664c82-166 171-275 267-328" fill="none" stroke="#30372B" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="421" cy="318" r="74" fill="#C8B58F"/>
+  <circle cx="493" cy="406" r="52" fill="#65444A" opacity=".72"/>
+  <circle cx="330" cy="460" r="61" fill="#737B68" opacity=".82"/>
+  <text x="54" y="72" fill="#30372B" font-family="Arial,sans-serif" font-size="22" letter-spacing="5">DEMO 05 · DETAIL</text>
+  <text x="94" y="834" fill="#25241F" font-family="Georgia,serif" font-size="54">Wedding detail</text>
+</svg>

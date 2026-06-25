@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720" role="img" aria-labelledby="t d">
+  <title id="t">Demo 06 Venue atmosphere placeholder</title>
+  <desc id="d">Replaceable venue atmosphere image slot.</desc>
+  <rect width="960" height="720" fill="#C8B58F"/>
+  <rect x="92" y="154" width="776" height="426" fill="#EDE3CF"/>
+  <path d="M160 580V254h640v326M160 254l320-118 320 118" fill="none" stroke="#30372B" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M260 580V360h120v220M420 580V360h120v220M580 580V360h120v220" fill="none" stroke="#737B68" stroke-width="8"/>
+  <text x="48" y="74" fill="#30372B" font-family="Arial,sans-serif" font-size="24" letter-spacing="6">DEMO 06</text>
+  <text x="48" y="654" fill="#25241F" font-family="Georgia,serif" font-size="62">Venue atmosphere</text>
+</svg>

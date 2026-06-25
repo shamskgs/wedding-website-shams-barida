@@ -1,14 +1,17 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 import { Upload, ExternalLink, Image as ImageIcon, Video } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function MemoryUploadSection() {
   const { language, t } = useLanguage();
   const content = weddingContent.upload;
+  const [detailImage, setDetailImage] = useState("/demo/demo-05-wedding-detail.jpg");
 
   const handleUploadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (content.googleDriveLink.includes("[PASTE")) {
@@ -59,8 +62,19 @@ export default function MemoryUploadSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-          className="border-t border-[rgba(27,23,20,0.12)] pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-0"
+          className="memory-upload-panel"
         >
+          <div className="memory-upload-image" aria-hidden="true">
+            <Image
+              src={detailImage}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 38vw"
+              className="object-cover"
+              loading="lazy"
+              onError={() => setDetailImage("/demo/demo-05-detail-placeholder.svg")}
+            />
+          </div>
           <div className="flex flex-col gap-6">
             <a
               href={content.googleDriveLink}
