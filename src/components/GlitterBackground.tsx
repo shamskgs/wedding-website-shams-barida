@@ -104,17 +104,19 @@ function GlitterPlane({ speed, intensity }: Required<GlitterBackgroundProps>) {
           float noise = texture2D(uNoise, uv * 1.35 + vec2(drift, -drift * 0.7)).r;
           vec2 flow = vec2(noise * 0.018, -noise * 0.014);
 
-          float fine = sparkleLayer(aspectUv + flow + vec2(iTime * 0.006, 0.0), 88.0, 0.976, 0.72);
-          float near = sparkleLayer(aspectUv * 0.92 - flow + vec2(0.0, iTime * 0.004), 42.0, 0.958, 0.48);
-          float dust = sparkleLayer(aspectUv + vec2(iTime * 0.002, -iTime * 0.003), 140.0, 0.992, 0.34);
+          float fine = sparkleLayer(aspectUv + flow + vec2(iTime * 0.007, 0.0), 86.0, 0.966, 0.72);
+          float near = sparkleLayer(aspectUv * 0.92 - flow + vec2(0.0, iTime * 0.005), 40.0, 0.944, 0.48);
+          float glint = sparkleLayer(aspectUv * 1.12 + vec2(-iTime * 0.003, iTime * 0.002), 30.0, 0.986, 0.9);
+          float dust = sparkleLayer(aspectUv + vec2(iTime * 0.002, -iTime * 0.003), 132.0, 0.988, 0.34);
 
           float vignette = smoothstep(0.95, 0.25, length(uv - 0.5));
-          float result = (fine * 0.72 + near * 0.42 + dust * 0.24) * vignette;
-          result = clamp(result, 0.0, 0.42);
+          float result = (fine * 0.82 + near * 0.54 + glint * 0.88 + dust * 0.28) * vignette;
+          result = pow(clamp(result, 0.0, 1.0), 0.92);
+          result = clamp(result, 0.0, 0.52);
 
-          vec3 sparkleColor = vec3(0.83, 0.73, 0.53);
-          vec3 plumLift = vec3(0.16, 0.10, 0.14) * result * 0.16;
-          float alpha = result * 0.62;
+          vec3 sparkleColor = vec3(0.88, 0.76, 0.52);
+          vec3 plumLift = vec3(0.18, 0.10, 0.15) * result * 0.12;
+          float alpha = clamp(result * uIntensity, 0.0, 0.72);
 
           gl_FragColor = vec4(sparkleColor * result * uIntensity + plumLift, alpha);
         }
@@ -167,7 +169,7 @@ function GlitterPlane({ speed, intensity }: Required<GlitterBackgroundProps>) {
   );
 }
 
-export default function GlitterBackground({ speed = 0.28, intensity = 1.6 }: GlitterBackgroundProps) {
+export default function GlitterBackground({ speed = 0.32, intensity = 2.4 }: GlitterBackgroundProps) {
   return (
     <div className="glitter-background" aria-hidden="true">
       <Canvas

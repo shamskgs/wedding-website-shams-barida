@@ -28,7 +28,7 @@ export default function Home() {
         <MotionConfig reducedMotion="user">
         <div className="relative min-h-screen editorial-story dark-editorial">
           <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
-            <GlitterBackground speed={0.28} intensity={1.6} />
+            <GlitterBackground speed={0.32} intensity={2.4} />
           </div>
 
           <div className="relative z-10 flex min-h-screen flex-col overflow-x-clip">
