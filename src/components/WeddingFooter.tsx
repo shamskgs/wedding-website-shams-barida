@@ -21,6 +21,9 @@ export default function WeddingFooter() {
         <p className="font-poppins text-[10px] uppercase tracking-[0.28em] text-[rgba(246,239,230,0.58)]">
           {t(content.details)}
         </p>
+        <p className="mt-4 font-poppins text-[10px] uppercase tracking-[0.28em] text-[rgba(246,239,230,0.7)]">
+          {t(content.thankYou)}
+        </p>
         <p className="mt-6 max-w-xl mx-auto editorial-copy editorial-copy--dark text-sm">
           {t(content.closingText)}
         </p>

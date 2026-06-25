@@ -277,6 +277,10 @@ export const weddingContent = {
       en: "11 July 2026 · Dhaka",
       bn: "১১ জুলাই ২০২৬ · ঢাকা"
     },
+    thankYou: {
+      en: "Thank you for being with us.",
+      bn: "আমাদের সঙ্গে থাকার জন্য ধন্যবাদ।"
+    },
     closingText: {
       en: "Made with love for a day to remember.",
       bn: "ভালোবাসায় তৈরি, স্মরণীয় একটি দিনের জন্য।"

@@ -9,7 +9,6 @@ import HeroInvitation from "@/components/HeroInvitation";
 import WeddingCountdown from "@/components/WeddingCountdown";
 import CoupleProfiles from "@/components/CoupleProfiles";
 import ProgramSection from "@/components/ProgramSection";
-import InvitationCardsSection from "@/components/InvitationCardsSection";
 import EventDetailsModal from "@/components/EventDetailsModal";
 import MemoryUploadSection from "@/components/MemoryUploadSection";
 import GuestGallery from "@/components/GuestGallery";
@@ -44,7 +43,6 @@ export default function Home() {
               onOpenDetails={() => setModalOpen(true)} 
               viewDetailsButtonRef={detailsButtonRef}
             />
-            <InvitationCardsSection />
             <MemoryUploadSection />
             <GuestGallery />
             <FamilyMessage />

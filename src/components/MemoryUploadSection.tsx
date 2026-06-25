@@ -1,17 +1,14 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 import { Upload, ExternalLink, Image as ImageIcon, Video } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function MemoryUploadSection() {
   const { language, t } = useLanguage();
   const content = weddingContent.upload;
-  const [detailImage, setDetailImage] = useState("/demo/demo-05-wedding-detail.jpg");
 
   const handleUploadClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (content.googleDriveLink.includes("[PASTE")) {
@@ -64,33 +61,24 @@ export default function MemoryUploadSection() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
           className="memory-upload-panel"
         >
-          <div className="memory-upload-image" aria-hidden="true">
-            <Image
-              src={detailImage}
-              alt=""
-              fill
-              sizes="(max-width: 1024px) 100vw, 38vw"
-              className="object-cover"
-              loading="lazy"
-              onError={() => setDetailImage("/demo/demo-05-detail-placeholder.svg")}
-            />
-          </div>
-          <div className="flex flex-col gap-6">
+          <div className="memory-upload-panel__body">
+            <div className="editorial-label mb-4">
+              {language === "bn" ? "আপলোড" : "Upload"}
+            </div>
+            <p className="editorial-copy max-w-xl">
+              {t(content.privacyNote)}
+            </p>
             <a
               href={content.googleDriveLink}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleUploadClick}
-              className="editorial-button editorial-button--filled w-full gap-3"
+              className="editorial-button editorial-button--filled mt-8 w-full gap-3 sm:w-auto"
             >
               <Upload size={14} />
               {t(content.cta)}
               <ExternalLink size={12} />
             </a>
-
-            <p className="editorial-copy text-sm">
-              {t(content.privacyNote)}
-            </p>
           </div>
         </motion.div>
       </div>

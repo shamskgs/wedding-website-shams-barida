@@ -247,8 +247,7 @@ header.fixed {
 .hero-kicker,
 .hero-date,
 .hero-details,
-.hero-action,
-.hero-scroll {
+.hero-action {
   font-family: var(--font-poppins), sans-serif;
 }
 
@@ -352,21 +351,6 @@ header.fixed {
   text-transform: uppercase;
 }
 
-.hero-scroll {
-  position: absolute;
-  right: clamp(1.25rem, 4vw, 4rem);
-  bottom: clamp(1.4rem, 3vw, 2.4rem);
-  z-index: 7;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: rgba(37, 36, 31, 0.62);
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
 .venue-name {
   max-width: 13ch;
   color: var(--deep-olive);
@@ -377,26 +361,6 @@ header.fixed {
   letter-spacing: -0.01em;
 }
 
-.invitation-cards-section { background: rgba(246, 240, 229, 0.46) !important; }
-.invitation-cards-section + .editorial-section { margin-top: 0 !important; }
-.ornamental-divider { display: flex; width: min(100%, 15rem); align-items: center; gap: 0.7rem; }
-.ornamental-divider::before, .ornamental-divider::after { content: ""; height: 1px; flex: 1; background: var(--antique-gold); }
-.ornamental-divider span { width: 0.4rem; height: 0.4rem; border: 1px solid var(--antique-gold); transform: rotate(45deg); }
-.invitation-card { min-width: 0; }
-.invitation-card:nth-child(2) { margin-top: 7rem; }
-.invitation-card h3 {
-  color: var(--deep-olive) !important;
-  line-height: 0.9;
-}
-.invitation-card-preview {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  padding: clamp(0.45rem, 1vw, 0.7rem);
-  border: 1px solid rgba(37, 36, 31, 0.12);
-  background: rgba(237, 227, 207, 0.58);
-}
-
 .memory-upload-panel {
   display: grid;
   gap: 1.5rem;
@@ -404,15 +368,9 @@ header.fixed {
   padding-top: 1.5rem;
 }
 
-.memory-upload-image {
-  position: relative;
-  min-height: clamp(16rem, 34vw, 26rem);
-  overflow: hidden;
-  background: rgba(237, 227, 207, 0.58);
-}
-
-.memory-upload-image img {
-  filter: saturate(0.78) sepia(0.1) contrast(0.96);
+.memory-upload-panel__body {
+  display: grid;
+  gap: 1rem;
 }
 
 #couple .editorial-image-frame {
@@ -539,11 +497,6 @@ footer .editorial-heading {
     letter-spacing: 0.16em;
   }
 
-  .hero-scroll {
-    right: 1.15rem;
-    bottom: 1.2rem;
-  }
-
   #couple .editorial-image-frame,
   #couple article:nth-child(1) .editorial-image-frame,
   #couple article:nth-child(3) .editorial-image-frame {
@@ -551,16 +504,10 @@ footer .editorial-heading {
     transform: none;
   }
 
-  .invitation-card:nth-child(2) {
-    margin-top: 0;
-  }
-
   .memory-upload-panel {
     border-left: 0;
     padding-left: 0;
   }
-
-  .invitation-card:nth-child(2) { margin-top: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -675,15 +622,13 @@ header.fixed button:hover {
 }
 
 .editorial-image-frame,
-.invitation-card-preview,
-.memory-upload-image {
+.invitation-card-preview {
   background: rgba(25, 28, 38, 0.58);
   border: 1px solid var(--glass-border);
 }
 
 .editorial-image-frame img,
-.invitation-card-preview img,
-.memory-upload-image img {
+.invitation-card-preview img {
   filter: saturate(0.72) sepia(0.08) contrast(0.92) brightness(0.74);
 }
 
@@ -806,10 +751,6 @@ header.fixed button:hover {
   border-bottom-color: rgba(211, 186, 134, 0.76);
 }
 
-.hero-scroll {
-  color: var(--text-muted);
-}
-
 .invitation-card-preview,
 .memory-upload-panel,
 #gallery .max-w-3xl,
@@ -823,6 +764,10 @@ header.fixed button:hover {
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   background: rgba(25, 28, 38, 0.34);
+}
+
+.modal-panel {
+  border-radius: 24px;
 }
 
 #program .grid.rounded-none,
@@ -872,10 +817,6 @@ footer.editorial-section--dark {
 }
 
 @media (max-width: 767px) {
-  .hero-details {
-    padding: 1rem;
-  }
-
   .memory-upload-panel,
   #program .grid.rounded-none,
   #gallery .max-w-3xl,

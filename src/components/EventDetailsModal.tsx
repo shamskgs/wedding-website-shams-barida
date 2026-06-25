@@ -94,7 +94,7 @@ export default function EventDetailsModal({
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-[rgba(27,23,20,0.55)]"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(7,8,11,0.72)] px-0 py-0 sm:items-center sm:p-4"
           onClick={handleBackdropClick}
           role="dialog"
           aria-modal="true"
@@ -107,85 +107,82 @@ export default function EventDetailsModal({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.95 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full sm:max-w-md bg-[var(--soft-ivory)] border border-[rgba(37,36,31,0.16)] p-8 relative flex flex-col max-h-[90vh] overflow-y-auto"
+            className="liquid-glass modal-panel relative flex max-h-[92vh] w-full flex-col overflow-y-auto border border-[rgba(255,255,255,0.12)] bg-[rgba(20,22,30,0.88)] p-6 text-[var(--text-primary)] sm:max-w-2xl sm:p-8"
           >
-            {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 text-[rgba(37,36,31,0.55)] hover:text-peacock transition-colors focus:outline-none focus:ring-2 focus:ring-peacock/20"
+              className="absolute right-4 top-4 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] p-2 text-[var(--text-secondary)] transition-colors hover:text-[var(--champagne)] focus:outline-none focus:ring-2 focus:ring-[rgba(211,186,134,0.28)]"
               aria-label="Close details modal"
             >
               <X size={20} />
             </button>
 
-            {/* Modal Header */}
-            <div className="text-center mb-8 mt-2">
-              <span className="text-[10px] uppercase tracking-[0.25em] text-gold font-semibold mb-1 block">
+            <div className="mb-8 mt-2 text-center">
+              <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--champagne)]">
                 {language === "bn" ? "নিমন্ত্রণ" : "Invitation"}
               </span>
               <h2
                 id="modal-title"
-                className={`font-display text-crimson leading-none ${
+                className={`leading-none text-[var(--text-primary)] ${
                   language === "bn"
-                    ? "font-bengali-serif text-2xl font-bold"
-                    : "text-4xl font-semibold"
+                    ? "font-bengali-serif text-[clamp(2rem,4vw,3rem)] font-semibold"
+                    : "font-display text-[clamp(2.8rem,5vw,4.8rem)] font-medium"
                 }`}
               >
                 {t(content.title)}
               </h2>
-              <div className="editorial-rule mx-auto mt-4 max-w-[6rem]" />
+              <div className="mx-auto mt-4 h-px w-24 bg-[rgba(211,186,134,0.42)]" />
             </div>
 
-            {/* Modal Content / Description */}
-            <div id="modal-description" className="space-y-6 text-charcoal/80 text-sm font-light tracking-wide">
-              {/* Date */}
+            <div id="modal-description" className="space-y-5 text-sm tracking-wide text-[var(--text-secondary)]">
               <div className="flex items-start gap-4">
-                <div className="p-2 border border-[rgba(37,36,31,0.12)] text-gold mt-0.5">
+                <div className="mt-0.5 rounded-full border border-[rgba(211,186,134,0.28)] p-2 text-[var(--champagne)]">
                   <Calendar size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
+                  <h4 className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--champagne)]">
                     {language === "bn" ? "তারিখ" : "Date"}
                   </h4>
-                  <p className="font-medium">{t(content.dateLabel)}</p>
+                  <p className="font-medium text-[var(--text-primary)]">{t(content.dateLabel)}</p>
                 </div>
               </div>
 
-              {/* Time */}
               <div className="flex items-start gap-4">
-                <div className="p-2 border border-[rgba(37,36,31,0.12)] text-gold mt-0.5">
+                <div className="mt-0.5 rounded-full border border-[rgba(211,186,134,0.28)] p-2 text-[var(--champagne)]">
                   <Clock size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
+                  <h4 className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--champagne)]">
                     {language === "bn" ? "সময়" : "Time"}
                   </h4>
-                  <p className="font-medium">{t(content.timeLabel)}</p>
+                  <p className="font-medium text-[var(--text-primary)]">{t(content.timeLabel)}</p>
                 </div>
               </div>
 
-              {/* Venue */}
               <div className="flex items-start gap-4">
-                <div className="p-2 border border-[rgba(37,36,31,0.12)] text-gold mt-0.5">
+                <div className="mt-0.5 rounded-full border border-[rgba(211,186,134,0.28)] p-2 text-[var(--champagne)]">
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <h4 className="text-xs uppercase tracking-[0.16em] text-peacock font-semibold mb-1">
+                  <h4 className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--champagne)]">
                     {language === "bn" ? "স্থান ও ঠিকানা" : "Venue & Address"}
                   </h4>
-                  <p className="font-display text-xl font-semibold uppercase tracking-[0.08em] text-wine">{t(content.venueName)}</p>
-                  <p className="text-xs text-charcoal/60 mt-1 leading-relaxed">{t(content.address)}</p>
+                  <p className="font-display text-[clamp(1.8rem,3.2vw,3rem)] font-medium leading-none text-[var(--text-primary)]">
+                    {t(content.venueName)}
+                  </p>
+                  <p className="mt-2 max-w-xl text-xs leading-relaxed text-[var(--text-secondary)]">
+                    {t(content.address)}
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Action Button */}
-            <div className="mt-8 flex flex-col gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={content.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="editorial-button editorial-button--filled w-full gap-2"
+                className="editorial-button editorial-button--filled w-full gap-2 sm:w-auto"
               >
                 {t(content.openMapsCTA)}
                 <ExternalLink size={13} />
@@ -193,7 +190,7 @@ export default function EventDetailsModal({
 
               <button
                 onClick={onClose}
-                className="editorial-button editorial-button--ghost w-full"
+                className="editorial-button editorial-button--ghost w-full sm:w-auto"
               >
                 {language === "bn" ? "বন্ধ করুন" : "Close"}
               </button>

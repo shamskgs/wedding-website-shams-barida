@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
 
@@ -82,17 +82,6 @@ export default function HeroInvitation({ onOpenDetails }: HeroInvitationProps) {
         </motion.button>
       </motion.div>
 
-      <motion.a
-        href="#couple"
-        className="hero-scroll liquid-glass"
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1.45, ease }}
-        aria-label="Scroll to the couple section"
-      >
-        <span>{isBengali ? "নিচে দেখুন" : "Scroll"}</span>
-        <ArrowDown size={14} aria-hidden="true" />
-      </motion.a>
     </section>
   );
 }
