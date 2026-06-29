@@ -23,6 +23,21 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+function canCreateWebGLContext() {
+  if (typeof document === "undefined") return false;
+
+  try {
+    const canvas = document.createElement("canvas");
+    return !!(
+      canvas.getContext("webgl2") ||
+      canvas.getContext("webgl") ||
+      canvas.getContext("experimental-webgl")
+    );
+  } catch {
+    return false;
+  }
+}
+
 function createNoiseTexture() {
   const size = 128;
   const data = new Uint8Array(size * size);
@@ -170,19 +185,32 @@ function GlitterPlane({ speed, intensity }: Required<GlitterBackgroundProps>) {
 }
 
 export default function GlitterBackground({ speed = 0.32, intensity = 2.4 }: GlitterBackgroundProps) {
+  const [webglSupported, setWebglSupported] = useState(false);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setWebglSupported(canCreateWebGLContext());
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <div className="glitter-background" aria-hidden="true">
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 35 }}
-        dpr={[1, 1.5]}
-        gl={{
-          alpha: true,
-          antialias: false,
-          powerPreference: "high-performance",
-        }}
-      >
-        <GlitterPlane speed={speed} intensity={intensity} />
-      </Canvas>
+      {webglSupported ? (
+        <Canvas
+          camera={{ position: [0, 0, 8], fov: 35 }}
+          dpr={[1, 1.5]}
+          gl={{
+            alpha: true,
+            antialias: false,
+            powerPreference: "high-performance",
+          }}
+        >
+          <GlitterPlane speed={speed} intensity={intensity} />
+        </Canvas>
+      ) : (
+        <div className="glitter-background__fallback" />
+      )}
     </div>
   );
 }

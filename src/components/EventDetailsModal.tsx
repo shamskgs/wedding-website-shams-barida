@@ -1,10 +1,19 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { useLanguage } from "./LanguageContext";
 import { weddingContent } from "@/data/wedding-content";
-import { X, Calendar, Clock, MapPin, ExternalLink } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  Calendar,
+  Clock,
+  ExternalLink,
+  MapPin,
+  MessageCircle,
+  Phone,
+  X,
+} from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 interface EventDetailsModalProps {
   isOpen: boolean;
@@ -19,185 +28,251 @@ export default function EventDetailsModal({
 }: EventDetailsModalProps) {
   const { language, t } = useLanguage();
   const modalRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
   const content = weddingContent.program;
+  const contact =
+    weddingContent.contacts.list.find((person) => person.name === "Sabbir") ??
+    weddingContent.contacts.list[0];
 
-  // Prevent background scrolling and trap focus
   useEffect(() => {
     if (!isOpen) return;
 
-    // Save previous active element to restore focus on close
     const previousActiveElement = document.activeElement as HTMLElement;
     const triggerElement = triggerRef.current;
+    const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-    // Disable body scroll
     document.body.style.overflow = "hidden";
-
-    // Focus trapping logic
-    const focusableElementsString =
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    const modal = modalRef.current;
-    if (!modal) return;
-
-    const focusableElements = Array.from(
-      modal.querySelectorAll<HTMLElement>(focusableElementsString)
-    );
-    const firstFocusableElement = focusableElements[0];
-    const lastFocusableElement = focusableElements[focusableElements.length - 1];
-
-    if (firstFocusableElement) {
-      // Small delay to let animations complete
-      setTimeout(() => firstFocusableElement.focus(), 100);
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+    const focusableElementsString =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+    const focusTimer = window.setTimeout(() => {
+      modalRef.current
+        ?.querySelector<HTMLElement>(focusableElementsString)
+        ?.focus();
+    }, shouldReduceMotion ? 0 : 120);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
         onClose();
         return;
       }
 
-      if (e.key === "Tab") {
-        if (e.shiftKey) {
-          // Shift + Tab
-          if (document.activeElement === firstFocusableElement) {
-            lastFocusableElement?.focus();
-            e.preventDefault();
-          }
-        } else {
-          // Tab
-          if (document.activeElement === lastFocusableElement) {
-            firstFocusableElement?.focus();
-            e.preventDefault();
-          }
-        }
+      if (event.key !== "Tab") return;
+
+      const modal = modalRef.current;
+      if (!modal) return;
+
+      const focusableElements = Array.from(
+        modal.querySelectorAll<HTMLElement>(focusableElementsString)
+      ).filter((element) => element.offsetParent !== null);
+      const firstFocusableElement = focusableElements[0];
+      const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+      if (!firstFocusableElement || !lastFocusableElement) {
+        event.preventDefault();
+        return;
+      }
+
+      if (event.shiftKey && document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus();
+        event.preventDefault();
+      } else if (!event.shiftKey && document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus();
+        event.preventDefault();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      window.clearTimeout(focusTimer);
+      document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
       window.removeEventListener("keydown", handleKeyDown);
-      // Restore focus
-      const focusTarget = triggerElement ?? previousActiveElement;
-      focusTarget?.focus();
+      (triggerElement ?? previousActiveElement)?.focus();
     };
-  }, [isOpen, onClose, triggerRef]);
+  }, [isOpen, onClose, shouldReduceMotion, triggerRef]);
 
-  // Click outside to close
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      onClose();
-    }
-  };
+  const portalRoot = typeof document === "undefined" ? null : document.body;
+  if (!portalRoot) return null;
 
-  return (
+  const overlayMotion = shouldReduceMotion
+    ? {
+        initial: { opacity: 1 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      };
+
+  const panelMotion = shouldReduceMotion
+    ? {
+        initial: { opacity: 1, y: 0, scale: 1 },
+        animate: { opacity: 1, y: 0, scale: 1 },
+        exit: { opacity: 0, y: 0, scale: 1 },
+      }
+    : {
+        initial: { opacity: 0, y: 18, scale: 0.98 },
+        animate: { opacity: 1, y: 0, scale: 1 },
+        exit: { opacity: 0, y: 18, scale: 0.98 },
+      };
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(7,8,11,0.72)] px-0 py-0 sm:items-center sm:p-4"
-          onClick={handleBackdropClick}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
+        <motion.div
+          className="modal-overlay"
+          onClick={onClose}
+          {...overlayMotion}
+          transition={{
+            duration: shouldReduceMotion ? 0.01 : 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
           <motion.div
             ref={modalRef}
-            initial={{ opacity: 0, y: 100, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 100, scale: 0.95 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="liquid-glass modal-panel relative flex max-h-[92vh] w-full flex-col overflow-y-auto border border-[rgba(255,255,255,0.12)] bg-[rgba(20,22,30,0.88)] p-6 text-[var(--text-primary)] sm:max-w-2xl sm:p-8"
+            className="details-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="details-modal-title"
+            aria-describedby="details-modal-description"
+            onClick={(event) => event.stopPropagation()}
+            {...panelMotion}
+            transition={{
+              duration: shouldReduceMotion ? 0.01 : 0.42,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.04)] p-2 text-[var(--text-secondary)] transition-colors hover:text-[var(--champagne)] focus:outline-none focus:ring-2 focus:ring-[rgba(211,186,134,0.28)]"
-              aria-label="Close details modal"
+              className="modal-close"
+              aria-label="Close details"
             >
               <X size={20} />
             </button>
 
-            <div className="mb-8 mt-2 text-center">
-              <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.25em] text-[var(--champagne)]">
-                {language === "bn" ? "নিমন্ত্রণ" : "Invitation"}
-              </span>
+            <div className="details-modal__header">
+              <p className="details-modal__eyebrow">
+                {language === "bn" ? "অনুষ্ঠান" : "The Program"}
+              </p>
               <h2
-                id="modal-title"
-                className={`leading-none text-[var(--text-primary)] ${
-                  language === "bn"
-                    ? "font-bengali-serif text-[clamp(2rem,4vw,3rem)] font-semibold"
-                    : "font-display text-[clamp(2.8rem,5vw,4.8rem)] font-medium"
+                id="details-modal-title"
+                className={`modal-title ${
+                  language === "bn" ? "font-bengali-serif font-semibold" : "font-display"
                 }`}
               >
                 {t(content.title)}
               </h2>
-              <div className="mx-auto mt-4 h-px w-24 bg-[rgba(211,186,134,0.42)]" />
             </div>
 
-            <div id="modal-description" className="space-y-5 text-sm tracking-wide text-[var(--text-secondary)]">
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 rounded-full border border-[rgba(211,186,134,0.28)] p-2 text-[var(--champagne)]">
-                  <Calendar size={18} />
-                </div>
+            <div id="details-modal-description" className="modal-body">
+              <section className="modal-group modal-group--two">
                 <div>
-                  <h4 className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--champagne)]">
+                  <p className="modal-label">
+                    <Calendar size={15} aria-hidden="true" />
                     {language === "bn" ? "তারিখ" : "Date"}
-                  </h4>
-                  <p className="font-medium text-[var(--text-primary)]">{t(content.dateLabel)}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 rounded-full border border-[rgba(211,186,134,0.28)] p-2 text-[var(--champagne)]">
-                  <Clock size={18} />
+                  </p>
+                  <p className="modal-strong">{t(content.dateLabel)}</p>
                 </div>
                 <div>
-                  <h4 className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--champagne)]">
+                  <p className="modal-label">
+                    <Clock size={15} aria-hidden="true" />
                     {language === "bn" ? "সময়" : "Time"}
-                  </h4>
-                  <p className="font-medium text-[var(--text-primary)]">{t(content.timeLabel)}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="mt-0.5 rounded-full border border-[rgba(211,186,134,0.28)] p-2 text-[var(--champagne)]">
-                  <MapPin size={18} />
-                </div>
-                <div>
-                  <h4 className="mb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--champagne)]">
-                    {language === "bn" ? "স্থান ও ঠিকানা" : "Venue & Address"}
-                  </h4>
-                  <p className="font-display text-[clamp(1.8rem,3.2vw,3rem)] font-medium leading-none text-[var(--text-primary)]">
-                    {t(content.venueName)}
                   </p>
-                  <p className="mt-2 max-w-xl text-xs leading-relaxed text-[var(--text-secondary)]">
-                    {t(content.address)}
-                  </p>
+                  <p className="modal-strong">{t(content.timeLabel)}</p>
                 </div>
-              </div>
-            </div>
+              </section>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={content.googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="editorial-button editorial-button--filled w-full gap-2 sm:w-auto"
-              >
-                {t(content.openMapsCTA)}
-                <ExternalLink size={13} />
-              </a>
+              <section className="modal-group">
+                <p className="modal-label">
+                  <MapPin size={15} aria-hidden="true" />
+                  {language === "bn" ? "স্থান" : "Venue"}
+                </p>
+                <p
+                  className={`modal-venue ${
+                    language === "bn" ? "font-bengali-serif" : "font-display"
+                  }`}
+                >
+                  {t(content.venueName)}
+                </p>
+                <address className="modal-address">
+                  {language === "bn" ? (
+                    t(content.address)
+                  ) : (
+                    <>
+                      4/A, Swid Bhavan
+                      <br />
+                      Eskaton Garden Road
+                      <br />
+                      Dhaka 1000
+                    </>
+                  )}
+                </address>
+              </section>
 
-              <button
-                onClick={onClose}
-                className="editorial-button editorial-button--ghost w-full sm:w-auto"
+              <section className="modal-group">
+                <a
+                  href={content.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="modal-button modal-button--primary"
+                >
+                  {t(content.openMapsCTA)}
+                  <ExternalLink size={15} aria-hidden="true" />
+                </a>
+              </section>
+
+              <section className="modal-group">
+                <p className="modal-label">{language === "bn" ? "যোগাযোগ" : "Contact"}</p>
+                <div className="modal-contact">
+                  <div>
+                    <p className="modal-contact__name">{contact.name}</p>
+                    <a href={`tel:${contact.phone}`} className="modal-contact__phone">
+                      {contact.phone}
+                    </a>
+                  </div>
+                  <div className="modal-contact__actions">
+                    <a href={`tel:${contact.phone}`} className="modal-button modal-button--secondary">
+                      <Phone size={15} aria-hidden="true" />
+                      {language === "bn" ? "কল করুন" : "Call"}
+                    </a>
+                    {contact.whatsapp && (
+                      <a
+                        href={`https://wa.me/${contact.whatsapp.replace(/^\+/, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modal-button modal-button--secondary"
+                      >
+                        <MessageCircle size={15} aria-hidden="true" />
+                        WhatsApp
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </section>
+
+              <section
+                className="modal-group modal-group--actions"
+                aria-label={language === "bn" ? "মডাল অ্যাকশন" : "Modal actions"}
               >
-                {language === "bn" ? "বন্ধ করুন" : "Close"}
-              </button>
+                <button onClick={onClose} className="modal-button modal-button--secondary">
+                  {language === "bn" ? "বন্ধ করুন" : "Close"}
+                </button>
+              </section>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    portalRoot
   );
 }

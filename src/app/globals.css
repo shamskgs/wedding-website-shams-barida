@@ -94,6 +94,7 @@ body {
 .editorial-shell { width: min(100%, 80rem); margin: 0 auto; }
 
 header.fixed {
+  z-index: 50;
   background: rgba(246, 240, 229, 0.72) !important;
   border-bottom: 1px solid rgba(37, 36, 31, 0.1);
   padding-block: 0.78rem !important;
@@ -796,6 +797,488 @@ footer.editorial-section--dark {
   background:
     radial-gradient(circle at 50% 0%, rgba(211, 186, 134, 0.12), transparent 28rem),
     rgba(7, 8, 11, 0.5);
+}
+
+.glitter-background,
+.glitter-background__fallback {
+  width: 100%;
+  height: 100%;
+}
+
+.glitter-background__fallback {
+  opacity: 0.72;
+  background-image:
+    radial-gradient(circle at 16% 22%, rgba(211, 186, 134, 0.42) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 18%, rgba(244, 240, 232, 0.3) 0 1px, transparent 2px),
+    radial-gradient(circle at 44% 64%, rgba(211, 186, 134, 0.34) 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 74%, rgba(211, 186, 134, 0.24) 0 1px, transparent 2px),
+    radial-gradient(circle at 28% 82%, rgba(244, 240, 232, 0.22) 0 1px, transparent 2px);
+  background-size: 13rem 13rem, 17rem 17rem, 19rem 19rem, 23rem 23rem, 29rem 29rem;
+  background-position: 0 0, 3rem 2rem, 6rem 5rem, 1rem 8rem, 10rem 4rem;
+  mix-blend-mode: screen;
+}
+
+.wedding-hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  overflow: clip;
+  padding: clamp(6.5rem, 11vh, 9.5rem) clamp(1rem, 4vw, 2rem) clamp(4.75rem, 8vh, 6rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: var(--text-primary);
+  isolation: isolate;
+}
+
+.wedding-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(211, 186, 134, 0.1), transparent 32%),
+    radial-gradient(circle at 50% 60%, rgba(94, 48, 59, 0.08), transparent 38%);
+}
+
+.wedding-hero .hero-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.13'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+.wedding-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 980px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.wedding-hero__eyebrow,
+.wedding-hero__date,
+.wedding-hero__program,
+.wedding-hero__venue,
+.wedding-hero__button {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+.wedding-hero__eyebrow {
+  margin-bottom: clamp(1.05rem, 2.5vh, 1.55rem);
+  color: var(--champagne);
+  font-size: clamp(0.64rem, 0.8vw, 0.76rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.wedding-hero__names {
+  color: var(--text-primary);
+  font-family: var(--font-display), Georgia, serif;
+  text-shadow: 0 1.2rem 4rem rgba(0, 0, 0, 0.4);
+}
+
+.wedding-hero__names h1 {
+  display: block;
+  overflow: hidden;
+  color: inherit;
+  font-family: inherit;
+  font-size: clamp(3.4rem, 8vw, 7.8rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.86;
+}
+
+.wedding-hero__names h1 > span {
+  display: block;
+  padding-bottom: 0.08em;
+}
+
+.wedding-hero__ampersand {
+  display: block;
+  margin: 0.22em 0 0.26em;
+  overflow: hidden;
+  color: var(--champagne);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.8;
+}
+
+.wedding-hero__divider {
+  width: min(16rem, 56vw);
+  height: 1px;
+  margin: clamp(1.2rem, 3vh, 1.9rem) auto clamp(1.25rem, 3vh, 1.8rem);
+  transform-origin: center;
+  background: linear-gradient(90deg, transparent, rgba(211, 186, 134, 0.74), transparent);
+}
+
+.wedding-hero__meta {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.wedding-hero__date {
+  color: var(--text-primary);
+  font-size: clamp(0.78rem, 1vw, 0.94rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.wedding-hero__program,
+.wedding-hero__venue {
+  color: var(--text-secondary);
+  font-size: clamp(0.72rem, 0.9vw, 0.88rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.wedding-hero__venue {
+  color: rgba(244, 240, 232, 0.72);
+}
+
+.wedding-hero__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.1rem;
+  margin-top: clamp(1.45rem, 3.5vh, 2.2rem);
+  padding: 0.9rem 1.35rem;
+  border: 1px solid rgba(211, 186, 134, 0.46);
+  border-radius: 999px;
+  background: rgba(211, 186, 134, 0.96);
+  color: #0d0e12;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+.wedding-hero__button:hover {
+  transform: translateY(-2px);
+  background: #e2ca95;
+  border-color: rgba(226, 202, 149, 0.76);
+}
+
+.wedding-hero__button:focus-visible {
+  outline: 2px solid rgba(244, 240, 232, 0.94);
+  outline-offset: 4px;
+}
+
+.wedding-hero__scroll {
+  position: absolute;
+  bottom: clamp(1.15rem, 3vh, 2rem);
+  left: 50%;
+  z-index: 1;
+  width: 1px;
+  height: clamp(1.9rem, 5vh, 3rem);
+  transform-origin: top;
+  background: linear-gradient(180deg, rgba(211, 186, 134, 0.72), transparent);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(3, 4, 7, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.details-modal {
+  position: relative;
+  z-index: 1001;
+  width: min(92vw, 680px);
+  max-height: min(86svh, 760px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(211, 186, 134, 0.28);
+  border-radius: 24px;
+  padding: clamp(1.35rem, 4vw, 2.8rem);
+  background:
+    linear-gradient(145deg, rgba(29, 31, 40, 0.97), rgba(14, 15, 21, 0.97));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 34px 100px rgba(0, 0, 0, 0.7);
+  color: var(--text-primary);
+}
+
+.modal-close {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.modal-close:hover {
+  border-color: rgba(211, 186, 134, 0.5);
+  background: rgba(211, 186, 134, 0.16);
+  color: var(--champagne);
+}
+
+.modal-close:focus-visible {
+  outline: 2px solid rgba(211, 186, 134, 0.85);
+  outline-offset: 3px;
+}
+
+.details-modal__header {
+  margin-top: -0.5rem;
+  padding-bottom: clamp(1.15rem, 3vw, 1.7rem);
+  text-align: center;
+}
+
+.details-modal__eyebrow,
+.modal-label {
+  color: var(--champagne);
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  margin-top: 0.5rem;
+  color: var(--text-primary);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
+}
+
+.modal-body {
+  color: var(--text-secondary);
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.modal-group {
+  padding-block: clamp(1rem, 3vw, 1.35rem);
+  border-top: 1px solid rgba(211, 186, 134, 0.18);
+}
+
+.modal-group--two {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.modal-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+}
+
+.modal-strong {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.modal-venue {
+  max-width: 14ch;
+  color: var(--text-primary);
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.modal-address {
+  margin-top: 0.85rem;
+  color: var(--text-secondary);
+  font-style: normal;
+}
+
+.modal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  gap: 0.55rem;
+  border-radius: 999px;
+  padding: 0.78rem 1rem;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal-button:hover {
+  transform: translateY(-1px);
+}
+
+.modal-button:focus-visible {
+  outline: 2px solid rgba(211, 186, 134, 0.85);
+  outline-offset: 3px;
+}
+
+.modal-button--primary {
+  width: 100%;
+  border: 1px solid rgba(211, 186, 134, 0.76);
+  background: var(--champagne);
+  color: #0d0e12;
+}
+
+.modal-button--primary:hover {
+  background: #e2ca95;
+}
+
+.modal-button--secondary {
+  border: 1px solid rgba(211, 186, 134, 0.34);
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--text-primary);
+}
+
+.modal-button--secondary:hover {
+  border-color: rgba(211, 186, 134, 0.64);
+  color: var(--champagne);
+}
+
+.modal-contact {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.modal-contact__name {
+  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modal-contact__phone {
+  display: inline-flex;
+  margin-top: 0.25rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+}
+
+.modal-contact__phone:hover,
+.modal-contact__phone:focus-visible {
+  color: var(--champagne);
+}
+
+.modal-contact__actions,
+.modal-group--actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.modal-group--actions {
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .wedding-hero {
+    padding: clamp(5.25rem, 12vh, 7rem) 1rem clamp(3.75rem, 8vh, 5rem);
+  }
+
+  .wedding-hero__inner {
+    width: min(100%, 34rem);
+  }
+
+  .wedding-hero__eyebrow {
+    letter-spacing: 0.22em;
+  }
+
+  .wedding-hero__names h1 {
+    font-size: clamp(3.1rem, 16vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .wedding-hero__date {
+    letter-spacing: 0.15em;
+  }
+
+  .wedding-hero__program,
+  .wedding-hero__venue {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+  }
+
+  .wedding-hero__program span {
+    display: block;
+    height: 0.15rem;
+    overflow: hidden;
+    color: transparent;
+  }
+
+  .details-modal {
+    width: min(94vw, 680px);
+    max-height: min(88svh, 760px);
+    border-radius: 20px;
+  }
+
+  .modal-group--two,
+  .modal-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-contact__actions,
+  .modal-group--actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .modal-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wedding-hero__button,
+  .modal-button {
+    transition: none;
+  }
 }
 
 ::-webkit-scrollbar-track {

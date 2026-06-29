@@ -88,6 +88,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const playerRef = useRef<YouTubePlayer | null>(null);
   const readyRef = useRef(false);
+  const initPromiseRef = useRef<Promise<YouTubePlayer | null> | null>(null);
   const audioEnabled = !!(
     weddingContent.music &&
     weddingContent.music.enabled &&
@@ -96,73 +97,73 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   const videoId = weddingContent.music?.youtubeVideoId || "";
 
   useEffect(() => {
-    if (!audioEnabled || !videoId) return;
-
-    let cancelled = false;
-
-    const init = async () => {
-      await loadYouTubeApi();
-      if (cancelled || !window.YT?.Player) return;
-
-      playerRef.current = new window.YT.Player(PLAYER_ID, {
-        videoId,
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          modestbranding: 1,
-          rel: 0,
-          playsinline: 1,
-          loop: 1,
-          playlist: videoId,
-          fs: 0,
-          iv_load_policy: 3,
-          disablekb: 1,
-        },
-        events: {
-          onReady: (event: YouTubePlayerEvent) => {
-            readyRef.current = true;
-            event.target.setVolume(35);
-
-            const sessionPlayback = sessionStorage.getItem(SESSION_KEY);
-            if (sessionPlayback === "true") {
-              try {
-                event.target.playVideo();
-              } catch {
-                setIsPlaying(false);
-              }
-            }
-          },
-          onStateChange: (event: YouTubePlayerEvent) => {
-            if (!window.YT?.PlayerState) return;
-            if (event.data === window.YT.PlayerState.PLAYING) {
-              setIsPlaying(true);
-              sessionStorage.setItem(SESSION_KEY, "true");
-            } else if (
-              event.data === window.YT.PlayerState.PAUSED ||
-              event.data === window.YT.PlayerState.ENDED
-            ) {
-              setIsPlaying(false);
-              sessionStorage.setItem(SESSION_KEY, "false");
-            }
-          },
-        },
-      });
-    };
-
-    init();
-
     return () => {
-      cancelled = true;
       if (playerRef.current?.destroy) {
         playerRef.current.destroy();
       }
       playerRef.current = null;
+      initPromiseRef.current = null;
       readyRef.current = false;
     };
-  }, [audioEnabled, videoId]);
+  }, []);
 
-  const togglePlay = () => {
-    const player = playerRef.current;
+  const initializePlayer = () => {
+    if (!audioEnabled || !videoId) return Promise.resolve(null);
+    if (playerRef.current && readyRef.current) return Promise.resolve(playerRef.current);
+    if (initPromiseRef.current) return initPromiseRef.current;
+
+    initPromiseRef.current = loadYouTubeApi().then(
+      () =>
+        new Promise<YouTubePlayer | null>((resolve) => {
+          if (!window.YT?.Player) {
+            resolve(null);
+            return;
+          }
+
+          playerRef.current = new window.YT.Player(PLAYER_ID, {
+            videoId,
+            playerVars: {
+              autoplay: 0,
+              controls: 0,
+              modestbranding: 1,
+              rel: 0,
+              playsinline: 1,
+              loop: 1,
+              playlist: videoId,
+              fs: 0,
+              iv_load_policy: 3,
+              disablekb: 1,
+              origin: window.location.origin,
+            },
+            events: {
+              onReady: (event: YouTubePlayerEvent) => {
+                readyRef.current = true;
+                event.target.setVolume(35);
+                resolve(event.target);
+              },
+              onStateChange: (event: YouTubePlayerEvent) => {
+                if (!window.YT?.PlayerState) return;
+                if (event.data === window.YT.PlayerState.PLAYING) {
+                  setIsPlaying(true);
+                  sessionStorage.setItem(SESSION_KEY, "true");
+                } else if (
+                  event.data === window.YT.PlayerState.PAUSED ||
+                  event.data === window.YT.PlayerState.ENDED
+                ) {
+                  setIsPlaying(false);
+                  sessionStorage.setItem(SESSION_KEY, "false");
+                }
+              },
+            },
+          });
+        })
+    );
+
+    return initPromiseRef.current;
+  };
+
+  const togglePlay = async () => {
+    const player = await initializePlayer();
     if (!player || !readyRef.current) return;
 
     if (isPlaying) {
